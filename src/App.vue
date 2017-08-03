@@ -7,6 +7,10 @@
     <main>
       <router-view></router-view>
     </main>
+    <footer>
+      OKKO.fun © 2017<br>
+      "OK K.O! Let's be heroes" TM & © Cartoon Network.
+    </footer>
   </div>
 </template>
 
@@ -24,9 +28,8 @@ header {
   text-align: center;
 
   img {
-    max-width: 100%;
     max-height: 150px;
-
+    max-width: 100%;
   }
 
   h2 {
@@ -35,9 +38,15 @@ header {
 }
 
 main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+  margin: 0 auto;
+  max-width: 900px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+footer {
+  font-size: 0.8rem;
+  padding: 2rem 1rem;
+  text-align: center;
 }
 </style>
