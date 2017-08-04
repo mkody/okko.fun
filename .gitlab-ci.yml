@@ -3,5 +3,7 @@ test:js:
   cache:
     paths:
     - node_modules/
+  before_script:
+   - npm install
   script:
    - npm run lint
