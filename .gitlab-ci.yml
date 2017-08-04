@@ -3,7 +3,5 @@ test:js:
   cache:
     paths:
     - node_modules/
-  before_script:
-   - npm install standard eslint eslint-plugin-standard
   script:
-   - ./node_modules/.bin/standard .
+   - npm run lint
