@@ -4,6 +4,6 @@ test:js:
     paths:
     - node_modules/
   before_script:
-   - npm install standard eslint-plugin-standard
+   - npm install standard eslint eslint-plugin-standard
   script:
    - ./node_modules/.bin/standard .
