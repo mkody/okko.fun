@@ -1,14 +1,14 @@
 <template>
-  <div id="community">
+  <div id="about-us">
     <page-not-ready></page-not-ready>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'community',
+  name: 'about-us',
   metaInfo: {
-    title: 'Community'
+    title: 'About Us'
   }
 }
 </script>

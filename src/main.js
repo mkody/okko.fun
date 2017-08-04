@@ -7,6 +7,9 @@ import router from './router'
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
 // Our components
+import MainFooter from '@/components/MainFooter'
+import MainHeader from '@/components/MainHeader'
+import PageNotReady from '@/components/PageNotReady'
 import ScheduleElement from '@/components/ScheduleElement'
 import TimelineElement from '@/components/TimelineElement'
 
@@ -17,6 +20,9 @@ Vue.use(Buefy, {
 })
 
 // Load components
+Vue.component('main-footer', MainFooter)
+Vue.component('main-header', MainHeader)
+Vue.component('page-not-ready', PageNotReady)
 Vue.component('schedule-element', ScheduleElement)
 Vue.component('timeline-element', TimelineElement)
 

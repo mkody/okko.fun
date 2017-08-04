@@ -1,0 +1,10 @@
+.navbar-item,
+.navbar-link {
+  &.router-link-active:not(.is-home) {
+    color: #7957d5;
+  }
+}
+
+.is-underline {
+  text-decoration: underline;
+}

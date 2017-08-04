@@ -1,5 +1,6 @@
 <template>
-  <div class="schedule">
+  <div id="schedule">
+    <page-not-ready></page-not-ready>
     <schedule-element
       v-for="episode in episodes"
       v-bind:episode="episode"

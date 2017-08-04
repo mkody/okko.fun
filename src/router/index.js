@@ -3,6 +3,9 @@ import Meta from 'vue-meta'
 import Router from 'vue-router'
 // Our components
 import About from '@/components/About'
+import AboutShow from '@/components/AboutShow'
+import AboutStaff from '@/components/AboutStaff'
+import AboutUs from '@/components/AboutUs'
 import Community from '@/components/Community'
 import Home from '@/components/Home'
 import News from '@/components/News'
@@ -14,7 +17,6 @@ Vue.use(Meta)
 
 export default new Router({
   mode: 'history',
-  linkActiveClass: 'is-active',
   routes: [
     {
       path: '/',
@@ -25,6 +27,26 @@ export default new Router({
       path: '/about',
       name: 'About',
       component: About
+    },
+    {
+      path: '/about/show',
+      name: 'AboutShow',
+      component: AboutShow
+    },
+    {
+      path: '/about/staff',
+      name: 'AboutStaff',
+      component: AboutStaff
+    },
+    {
+      path: '/about/timeline',
+      name: 'Timeline',
+      component: Timeline
+    },
+    {
+      path: '/about/here',
+      name: 'AboutUs',
+      component: AboutUs
     },
     {
       path: '/community',
@@ -40,11 +62,6 @@ export default new Router({
       path: '/schedule',
       name: 'Schedule',
       component: Schedule
-    },
-    {
-      path: '/timeline',
-      name: 'Timeline',
-      component: Timeline
     }
   ]
 })

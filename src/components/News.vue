@@ -1,6 +1,6 @@
 <template>
-  <div class="news">
-    
+  <div id="news">
+    <page-not-ready></page-not-ready>
   </div>
 </template>
 
