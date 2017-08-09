@@ -24,7 +24,7 @@ export default {
         {
           id: 0,
           title: 'Pilot of "Lakewood Plaza Turbo"',
-          description: '<i>KO, Enid, and Rad investigate to find out who sprayed graffiti on the plaza\'s sign after being told to by Mr. Gar.</i><br> This episode, written by Ian Jones-Quartey, was released on Youtube on late-May 2013 as part of Cartoon Network\'s Summer Shorts project.<br> That was 4 years and 2 months before the show premiere on TV.',
+          description: '<i>KO, Enid, and Rad investigate to find out who sprayed graffiti on the plaza\'s sign after being told to by Mr. Gar.</i><br> This episode, written by Ian Jones-Quartey, was released on late-May 2013 as part of Cartoon Network\'s Summer Shorts project.<br> That was 4 years and 2 months before the show premiere on TV.',
           icon: 'tv',
           date: 'May 21, 2013',
           url: false
@@ -32,9 +32,9 @@ export default {
         {
           id: 1,
           title: 'First set of shorts',
-          description: 'Starting February 4, three shorts where released on Youtube by Cartoon Network.<ul><li>"KO" (Feb. 4)</li><li>"Enid" (Feb. 5)</li><li>"Rad" (Feb. 6)</li></ul>',
+          description: 'Starting February 4, three shorts where released.<ul><li>"KO" (Feb. 4)</li><li>"Enid" (Feb. 5)</li><li>"Rad" (Feb. 6)</li></ul>',
           icon: 'youtube',
-          date: 'February 4, 2016',
+          date: 'February 4 - February 6, 2016',
           url: false
         },
         {
@@ -50,7 +50,7 @@ export default {
           title: '5 new shorts',
           description: 'In December (and first of January), new shorts were published online. <ul><li>"Carol" (Dec. 13)</li><li>"Enid\'s Bad Day" (Dec. 22)</li><li>"Barrels and Crates" (Dec. 25)</li><li>"Rad Cries" (Dec. 29)</li><li>"Barrels and Crates" (Jan. 1)</li></ul>',
           icon: 'youtube',
-          date: 'December 13 2016',
+          date: 'December 13, 2016 - January 1, 2017',
           url: false
         },
         {
@@ -72,17 +72,9 @@ export default {
         {
           id: 6,
           title: 'OK K.O.! Premiere on TV',
-          description: 'Episodes 1 to 4 aired on Cartoon Network from 6:15p to 7:15p. <ul><li>"Let\'s Be Heroes" (6:15p)</li><li>"Let\'s Be Friends!" (6:30p)</li><li>"You\'re Everybody\'s Sidekick" (6:45p)</li><li>"We Messed Up" (7:00p)</li></ul> The two first episodes re-aired the same day at 7:30p before CN\'s logout.<hr>The next day, episodes 5 and 6 aired on Cartoon Network from 6:15p to 6:45p. <ul><li>"Jethro\'s All Yours" (6:15p)</li><li>"You\'re Level 100!" (6:30p)</li></ul> They re-aired the same day at 7:30p, except it was first "You\'re Level 100!" and then "Jethro\'s All Yours". Previous episodes are now airing from 8:00-9:00a, 12:00-1:00p and 4:00-5:00p.',
+          description: 'From August 1st to August 4th, episodes premiere on Cartoon Network starting 6:15p with reruns done through the day and before CN\'s signoff.<hr>Starting August 7, the show is airing from 6:30p to 7:00p Mon-Sat, with four episodes blocks on Sunday (at different times).',
           icon: 'tv',
-          date: 'August 1, 2017',
-          url: false
-        },
-        {
-          id: 7,
-          title: 'All new new new new episodes',
-          description: 'New we\'re getting serious! Never-seen-before episodes 7 and 8 premiered on Cartoon Network.<ul><li>"Sibling Rivalry" (6:15p)</li><li>"I Am Dendy" (6:30p)</li></ul><hr>And again, we\'re getting two more on August 4.<ul><li>"Do You Have Any More in the Back?" (6:15p)</li><li>"My Dad Can Beat up Your Dad" (6:30p)</li></ul>',
-          icon: 'tv',
-          date: 'August 3, 2017',
+          date: 'Starting August 1, 2017',
           url: false
         }
       ]
