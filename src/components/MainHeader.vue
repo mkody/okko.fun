@@ -29,14 +29,17 @@
             </router-link>
 
             <div class="navbar-dropdown is-boxed">
+              <!--
               <router-link class="navbar-item" to="/about/show">
                 The Show
               </router-link>
+              -->
 
               <router-link class="navbar-item" to="/about/timeline">
                 Show Timeline
               </router-link>
 
+              <!--
               <router-link class="navbar-item" to="/about/staff">
                 The Staff
               </router-link>
@@ -44,6 +47,7 @@
               <router-link class="navbar-item" to="/about/here">
                 This Website
               </router-link>
+              -->
             </div>
           </div>
 

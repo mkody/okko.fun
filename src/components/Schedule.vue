@@ -35,6 +35,7 @@ export default {
     var url = 'https://api.sug.rocks/cnschedule.json'
 
     // Fetch our API
+    // TODO: Polyfill needed!
     fetch(url)
       .then(data => {
         return data.json()
