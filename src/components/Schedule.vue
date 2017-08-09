@@ -21,7 +21,7 @@
 export default {
   name: 'schedule',
   metaInfo: {
-    title: 'Schedule'
+    title: 'Next TV Airings'
   },
   data () {
     return {

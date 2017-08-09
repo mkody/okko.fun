@@ -1,6 +1,6 @@
 <template>
-  <div id="community">
-    <h3 class="title">Community Ressources</h3>
+  <div id="links">
+    <h3 class="title">Links & Ressources</h3>
     <h5 class="subtitle">Where to find more fans or know more about the show.</h5>
 
     <div class="columns is-multiline">
@@ -38,9 +38,9 @@
 
 <script>
 export default {
-  name: 'community',
+  name: 'links',
   metaInfo: {
-    title: 'Community'
+    title: 'Links & Ressources'
   },
   data () {
     return {

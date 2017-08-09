@@ -6,7 +6,7 @@ import About from '@/components/About'
 import AboutShow from '@/components/AboutShow'
 import AboutStaff from '@/components/AboutStaff'
 import AboutUs from '@/components/AboutUs'
-import Community from '@/components/Community'
+import Links from '@/components/Links'
 import Home from '@/components/Home'
 import News from '@/components/News'
 import Schedule from '@/components/Schedule'
@@ -49,9 +49,9 @@ export default new Router({
       component: AboutUs
     },
     {
-      path: '/community',
-      name: 'Community',
-      component: Community
+      path: '/links',
+      name: 'Links',
+      component: Links
     },
     {
       path: '/news',

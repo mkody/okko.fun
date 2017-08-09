@@ -47,8 +47,8 @@
             </div>
           </div>
 
-          <router-link class="navbar-item" to="/community">
-            Community
+          <router-link class="navbar-item" to="/links">
+            Links
           </router-link>
 
           <router-link class="navbar-item" to="/news">
