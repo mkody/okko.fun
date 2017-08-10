@@ -24,13 +24,11 @@
     <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
   </head>
   <body>
-    <noscript>
-      <div style="text-align: center;">
-        <img src="/static/img/icons/android-chrome-192x192.png">
-        <br>
-        Please enable javascript to browse this website!
-      </div>
-    </noscript>
+    <div style="text-align: center; font-weight: bold;">
+      <noscript>
+        Please enable javascript or some elements will be broken!
+      </noscript>
+    </div>
     <div id="app"></div>
     <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
   </body>

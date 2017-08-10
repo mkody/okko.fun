@@ -18,6 +18,9 @@
 </template>
 
 <script>
+// Polyfill for fetch()
+import 'whatwg-fetch'
+
 export default {
   name: 'schedule',
   metaInfo: {
@@ -35,7 +38,6 @@ export default {
     var url = 'https://api.sug.rocks/cnschedule.json'
 
     // Fetch our API
-    // TODO: Polyfill needed!
     fetch(url)
       .then(data => {
         return data.json()
@@ -55,9 +57,6 @@ export default {
             })
           }
         })
-      })
-      .then(() => {
-        console.log(t.episodes)
       })
   }
 }
