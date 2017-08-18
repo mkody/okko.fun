@@ -10,21 +10,15 @@ import 'buefy/lib/buefy.css'
 import MainFooter from '@/components/MainFooter'
 import MainHeader from '@/components/MainHeader'
 import PageNotReady from '@/components/PageNotReady'
-import ScheduleElement from '@/components/ScheduleElement'
-import TimelineElement from '@/components/TimelineElement'
 
 Vue.config.productionTip = false
 
-Vue.use(Buefy, {
-  defaultIconPack: 'fa'
-})
+Vue.use(Buefy, {defaultIconPack: 'fa'})
 
 // Load components
 Vue.component('main-footer', MainFooter)
 Vue.component('main-header', MainHeader)
 Vue.component('page-not-ready', PageNotReady)
-Vue.component('schedule-element', ScheduleElement)
-Vue.component('timeline-element', TimelineElement)
 
 /* eslint-disable no-new */
 new Vue({

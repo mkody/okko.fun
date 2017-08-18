@@ -1,10 +1,20 @@
 <template>
   <div id="timeline">
-    <timeline-element
+    <div class="timeline-item"
       v-for="thing in elements"
-      v-bind:thing="thing"
-      v-bind:key="thing.id">
-    </timeline-element>
+      v-bind:key="thing.id"
+      :id="'event-' + thing.id">
+      <!--Icon inside the circle-->
+      <div class="timeline-icon">
+        <b-icon :icon="thing.icon"></b-icon>
+      </div>
+      <div class="timeline-content">
+        <h2 class="title is-spaced" v-text="thing.title"></h2>
+        <h3 class="subtitle" v-text="thing.date"></h3>
+        <div class="content" v-html="thing.description"></div>
+        <a v-if="thing.url" :href="thing.url" class="button">More...</a>
+      </div>
+    </div>
 
     <div class="notification is-info">
       <b>Found an error or a typo?</b> Please tell us on <a class="is-underline" href="https://twitter.com/OKKOfun">Twitter</a> or <a class="is-underline" href="https://okkofun.tumblr.com">Tumblr</a> and we'll correct it as fast as we can!
@@ -72,7 +82,7 @@ export default {
         {
           id: 6,
           title: 'OK K.O.! Premiere on TV',
-          description: 'From August 1st to August 4th, episodes premiere on Cartoon Network starting 6:15p with reruns done through the day and before CN\'s signoff.<hr>Starting August 7, the show is airing from 6:30p to 7:00p Mon-Sat, with four episodes blocks on Sunday (at different times).',
+          description: 'From August 1st to August 4th, episodes premiere on Cartoon Network starting 6:15p with reruns done through the day and before CN\'s signoff.<hr>Starting August 7, the show is airing from 6:30p to 7:00p Mon-Sat, with blocks of four episodes on Sunday (at different times).',
           icon: 'tv',
           date: 'Starting August 1, 2017',
           url: false

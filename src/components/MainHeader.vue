@@ -10,10 +10,6 @@
           <b-icon icon="twitter"></b-icon>
         </a>
 
-        <a class="navbar-item is-hidden-desktop" href="https://okkofun.tumblr.com" target="_blank">
-          <b-icon icon="tumblr"></b-icon>
-        </a>
-
         <div class="navbar-burger burger" data-target="navMenuHeader">
           <span></span>
           <span></span>
@@ -23,6 +19,10 @@
 
       <div id="navMenuHeader" class="navbar-menu">
         <div class="navbar-start">
+          <router-link class="navbar-item" to="/schedule">
+            Schedule
+          </router-link>
+
           <div class="navbar-item has-dropdown is-hoverable">
             <router-link class="navbar-link" to="/about">
               About
@@ -55,32 +55,21 @@
             Links
           </router-link>
 
+          <!--
           <router-link class="navbar-item" to="/news">
             News
           </router-link>
-
-          <router-link class="navbar-item" to="/schedule">
-            Schedule
-          </router-link>
+          -->
         </div>
 
-        <div class="navbar-end">
+        <div class="navbar-end is-hidden-mobile">
           <div class="navbar-item">
             <div class="field is-grouped">
               <p class="control">
-                <a class="button" href="https://twitter.com/okkofun" target="_blank">
+                <a class="button is-info" href="https://twitter.com/okkofun" target="_blank">
                   <b-icon icon="twitter"></b-icon>
                   <span>
                     Twitter
-                  </span>
-                </a>
-              </p>
-
-              <p class="control">
-                <a class="button is-info" href="https://okkofun.tumblr.com" target="_blank">
-                  <b-icon icon="tumblr"></b-icon>
-                  <span>
-                    umblr
                   </span>
                 </a>
               </p>
@@ -105,6 +94,27 @@
 export default {
   name: 'main-header'
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Get all "navbar-burger" elements
+  var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0)
+
+  // Check if there are any nav burgers
+  if ($navbarBurgers.length > 0) {
+    // Add a click event on each of them
+    $navbarBurgers.forEach(function ($el) {
+      $el.addEventListener('click', function () {
+        // Get the target from the "data-target" attribute
+        var target = $el.dataset.target
+        var $target = document.getElementById(target)
+
+        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+        $el.classList.toggle('is-active')
+        $target.classList.toggle('is-active')
+      })
+    })
+  }
+})
 </script>
 
 <style lang="scss">

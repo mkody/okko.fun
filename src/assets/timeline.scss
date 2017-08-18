@@ -83,8 +83,10 @@
         border-bottom: 7px solid transparent; 
         border-left:7px solid $timeline-color; 
       }
+    }
 
-      &.right {
+    &:nth-child(even) {
+      .timeline-content {
         float: right;
 
         &:before {
