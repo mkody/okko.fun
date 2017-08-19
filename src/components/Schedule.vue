@@ -47,7 +47,9 @@ export default {
         1503354600, // Face Your Fears
         1503441000, // Everybody Likes Rad?
         1503527400, // You Have to Care
-        1503613800 // Plaza Prom
+        1503613800, // Plaza Prom
+        1504305000, // Second First Date
+        1504909800 // One Last Score
       ]
     }
   },
