@@ -101,8 +101,9 @@ h5.subtitle {
   float: right;
   font-size: 18px;
   font-weight: bold;
-  line-height: 14px;
+  line-height: 17px;
   margin: -12px -12px -12px 10px;
+  overflow: hidden;
   padding: 2px 5px 0;
 }
 
