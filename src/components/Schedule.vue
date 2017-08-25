@@ -103,6 +103,28 @@ h5.subtitle {
   font-weight: bold;
   line-height: 14px;
   margin: -12px -12px -12px 10px;
-  padding: 5px;
+  padding: 2px 5px 0;
+}
+
+.newnewnewnew span {
+  animation-duration: 3s;
+  animation-name: newnewnewnew;
+  animation-iteration-count: infinite;
+  position: relative;
+  top: 0px;
+}
+
+@keyframes newnewnewnew {
+  0%   {top: 70px; }
+  10%  {top: 70px; }
+  12%  {top: 51px; }
+  20%  {top: 51px; }
+  22%  {top: 34px; }
+  30%  {top: 34px; }
+  32%  {top: 17px; }
+  40%  {top: 17px; }
+  42%  {top: 0px;  }
+  85%  {top: 0px;  }
+  100% {top: -70px;}
 }
 </style>
