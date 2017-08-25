@@ -90,42 +90,66 @@ export default {
 
 <style scoped>
 h5.subtitle {
-  margin-bottom: 0;
+   margin-bottom: 0;
 }
+
 .card .content h5 {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
+
 .newnewnewnew {
-  /* background: linear-gradient(0deg, #ffc100, #e3e81d); */
-  background: linear-gradient(180deg, #1ddde8, #1de840);
-  float: right;
-  font-size: 18px;
-  font-weight: bold;
-  line-height: 17px;
-  margin: -12px -12px -12px 10px;
-  overflow: hidden;
-  padding: 2px 5px 0;
+    /* background: linear-gradient(0deg, #ffc100, #e3e81d); */
+    background: linear-gradient(180deg, #1ddde8, #1de840);
+    float: right;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 17px;
+    margin: -12px -12px -12px 10px;
+    overflow: hidden;
+    padding: 2px 5px 0;
 }
 
 .newnewnewnew span {
-  animation-duration: 3s;
-  animation-name: newnewnewnew;
-  animation-iteration-count: infinite;
-  position: relative;
-  top: 0px;
+    animation-duration: 3s;
+    animation-name: newnewnewnew;
+    animation-iteration-count: infinite;
+    position: relative;
+    top: 0px;
 }
 
 @keyframes newnewnewnew {
-  0%   {top: 70px; }
-  10%  {top: 70px; }
-  12%  {top: 51px; }
-  20%  {top: 51px; }
-  22%  {top: 34px; }
-  30%  {top: 34px; }
-  32%  {top: 17px; }
-  40%  {top: 17px; }
-  42%  {top: 0px;  }
-  85%  {top: 0px;  }
-  100% {top: -70px;}
+    0% {
+       top: 70px;
+    }
+    10% {
+       top: 70px;
+    }
+    12% {
+       top: 51px;
+    }
+    20% {
+       top: 51px;
+    }
+    22% {
+       top: 34px;
+    }
+    30% {
+       top: 34px;
+    }
+    32% {
+       top: 17px;
+    }
+    40% {
+       top: 17px;
+    }
+    42% {
+       top: 0px;
+    }
+    90% {
+       opacity: 1;
+    }
+    100% {
+       opacity: 0;
+    }
 }
 </style>
