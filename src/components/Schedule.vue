@@ -46,7 +46,7 @@ export default {
       premiereTs: [
         1503613800, // Plaza Prom
         1504305000, // Second First Date & One Last Score
-        1504564200, // (?) TBA
+        1504563000, // T.K.O.
         1504909800 // TBA
       ]
     }
