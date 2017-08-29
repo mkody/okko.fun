@@ -43,12 +43,7 @@ export default {
     return {
       episodes: [],
       currentTS: parseInt(Date.now() / 1000, 10),
-      premiereTs: [
-        1503613800, // Plaza Prom
-        1504305000, // Second First Date & One Last Score
-        1504563000, // T.K.O.
-        1504909800 // TBA
-      ]
+      premiereTs: []
     }
   },
   methods: {
@@ -61,10 +56,10 @@ export default {
   mounted () {
     // Shortcut and URL to our API
     var t = this
-    var url = 'https://api.sug.rocks/cnschedule.json'
+    var scheduleUrl = 'https://api.sug.rocks/cnschedule.json'
 
     // Fetch our API
-    fetch(url)
+    fetch(scheduleUrl)
       .then(data => {
         return data.json()
       }, err => {
@@ -82,6 +77,21 @@ export default {
               }
             })
           }
+        })
+      })
+
+    var premieresUrl = 'https://data.okko.fun/api/latest/premiere-ts.json'
+
+    // Fetch our API
+    fetch(premieresUrl)
+      .then(data => {
+        return data.json()
+      }, err => {
+        console.log(err)
+      })
+      .then(json => {
+        Object.keys(json).map(pKey => {
+          t.premiereTs.push(json[pKey]['ts'])
         })
       })
   }
