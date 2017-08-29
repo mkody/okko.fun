@@ -80,8 +80,6 @@ export default {
     }
   },
   mounted () {
-    // Start loading
-    const loadingComponent = this.$loading.open()
     // Shortcut and URL to our API
     var t = this
     var apiUrl = 'https://api.sug.rocks/all-leaks.json'
@@ -101,9 +99,6 @@ export default {
             t.leaks.push(leak)
           }
         })
-      })
-      .then(() => {
-        setTimeout(() => loadingComponent.close(), 200)
       })
   }
 }

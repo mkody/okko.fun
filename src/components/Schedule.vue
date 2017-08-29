@@ -54,8 +54,6 @@ export default {
     }
   },
   mounted () {
-    // Start loading
-    const loadingComponent = this.$loading.open()
     // Shortcut and URL to our API
     var t = this
     var scheduleUrl = 'https://api.sug.rocks/cnschedule.json'
@@ -95,9 +93,6 @@ export default {
         Object.keys(json).map(pKey => {
           t.premiereTs.push(json[pKey]['ts'])
         })
-      })
-      .then(() => {
-        setTimeout(() => loadingComponent.close(), 1000)
       })
   }
 }
