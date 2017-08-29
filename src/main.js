@@ -6,6 +6,8 @@ import router from './router'
 // Styles
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
+// Cool stuff
+import VueImg from 'v-img'
 // Our components
 import MainFooter from '@/components/MainFooter'
 import MainHeader from '@/components/MainHeader'
@@ -14,6 +16,7 @@ import PageNotReady from '@/components/PageNotReady'
 Vue.config.productionTip = false
 
 Vue.use(Buefy, {defaultIconPack: 'fa'})
+Vue.use(VueImg)
 
 // Load components
 Vue.component('main-footer', MainFooter)

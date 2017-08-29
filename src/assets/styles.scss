@@ -1,10 +1,40 @@
+$highlight-color: #7957d5;
+
 .navbar-item,
 .navbar-link {
-  &.router-link-active:not(.is-home) {
-    color: #7957d5;
+  &.router-link-active {
+    &:not(.is-home) {
+      color: $highlight-color;
+    }
   }
 }
 
 .is-underline {
   text-decoration: underline;
+}
+
+small {
+  font-size: .7em;
+}
+
+.blink {
+  animation: blinker 3s linear infinite;
+}
+
+@keyframes blinker {
+  0% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

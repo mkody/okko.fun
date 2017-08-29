@@ -2,7 +2,7 @@
   <div id="timeline">
     <div class="timeline-item"
       v-for="thing in elements"
-      v-bind:key="thing.id"
+      :key="thing.id"
       :id="'event-' + thing.id">
       <!--Icon inside the circle-->
       <div class="timeline-icon">

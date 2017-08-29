@@ -4,10 +4,11 @@
     <h5 class="subtitle">Where to find more fans or know more about the show.</h5>
 
     <div class="columns is-multiline">
-      <div class="column is-half"
+      <div
+        class="column is-half"
         v-for="category in categories"
-        v-bind:category="category"
-        v-bind:key="category.title">
+        :category="category"
+        :key="category.title">
         <div class="card category">
           <header class="card-header">
             <p class="card-header-title">
@@ -18,9 +19,10 @@
             <div class="content">
               <p>{{ category.description }}</p>
               <ul>
-                <li v-for="linkEl in category.links"
-                  v-bind:key="linkEl.title">
-                  <a :href="linkEl.link" v-text="linkEl.title"></a>
+                <li
+                  v-for="linkEl in category.links"
+                  :key="linkEl.title">
+                  <a :href="linkEl.link">{{ linkEl.title }}</a>
                 </li>
               </ul>
             </div>
@@ -96,6 +98,16 @@ export default {
             {
               title: '(US) Google Play',
               link: 'https://play.google.com/store/tv/show/OK_K_O_Let_s_Be_Heroes?id=HYu1ZYp6rL34jqCclgJrWw'
+            }
+          ]
+        },
+        {
+          title: 'Cool Community Stuff',
+          description: 'Fan-made content worth to mention',
+          links: [
+            {
+              title: 'OK KO: PRESS START!!',
+              link: 'https://okko-press-start.tumblr.com/post/163639104935'
             }
           ]
         },

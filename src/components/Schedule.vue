@@ -10,7 +10,7 @@
     <div class="columns is-multiline">
       <div class="column is-8 is-offset-2 card"
         v-for="episode in episodes"
-        v-bind:key="episode.timestamp">
+        :key="episode.timestamp">
         <div class="content">
           <div class="newnewnewnew" v-if="premiereTs.indexOf(episode.timestamp) > -1">
             <span style="color: #ec1ad8">NEW</span><br>
@@ -54,6 +54,8 @@ export default {
     }
   },
   mounted () {
+    // Start loading
+    const loadingComponent = this.$loading.open()
     // Shortcut and URL to our API
     var t = this
     var scheduleUrl = 'https://api.sug.rocks/cnschedule.json'
@@ -93,6 +95,9 @@ export default {
         Object.keys(json).map(pKey => {
           t.premiereTs.push(json[pKey]['ts'])
         })
+      })
+      .then(() => {
+        setTimeout(() => loadingComponent.close(), 1000)
       })
   }
 }

@@ -1,9 +1,9 @@
 <template>
   <div id="previews">
-    <h3 class="title">Previews</h3>
+    <h3 class="title">Previews <small>(or "leaks")</small></h3>
     <h5 class="subtitle">
-      Also known as <i>leaks</i>. Spoilers!<br>
-      <small><i>Powered by /sug/.rocks LEAKBOT.</i></small>
+      Two minutes previews and some random screenshots.<br>
+      <u class="blink">Spoilers!</u>
     </h5>
 
     <div class="columns is-multiline">
@@ -19,27 +19,44 @@
         </span>
         <div class="content">
           <blockquote v-html="leak.desc"></blockquote>
-          <video
+          <video-player
             v-if="leak.videos.length > 0"
-            :src="leak.videos[0].url"
-            controls preload="metadata"></video>
+            class="preview-video"
+            ref="videoPlayer"
+            :options="{
+              muted: false,
+              sources: [{
+                type: 'video/mp4',
+                src: leak.videos[0].url
+              }],
+              poster: 'https://proxy.sug.rocks/' + leak.images[0].url,
+              fluid: true
+            }"
+            :playsinline="true">
+          </video-player>
           <div class="columns is-multiline">
             <div class="column is-half"
               v-for="image in leak.images"
               :key="image.url">
-              <a :href="image.url">
-                <img :src="image.url">
-              </a>
+              <img
+                v-img="{
+                  group: leak.id,
+                  src: 'https://proxy.sug.rocks/' + image.url,
+                  cursor: 'zoom-in'
+                }"
+                :src="'https://proxy.sug.rocks/400x/' + image.url">
             </div>
           </div>
         </div>
       </b-panel>
     </div>
-
   </div>
 </template>
 
 <script>
+import { videoPlayer } from 'vue-video-player'
+require('video.js/dist/video-js.css')
+
 export default {
   name: 'previews',
   metaInfo: {
@@ -50,14 +67,21 @@ export default {
       leaks: []
     }
   },
+  components: {
+    videoPlayer
+  },
   methods: {
     getDate: (ts) => {
       // Get current timestamp and check if current element is on air
       var dateObj = new Date(ts * 1000)
       return dateObj.toLocaleString(navigator.language, {weekday: 'long', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'})
+    },
+    open: () => {
     }
   },
   mounted () {
+    // Start loading
+    const loadingComponent = this.$loading.open()
     // Shortcut and URL to our API
     var t = this
     var apiUrl = 'https://api.sug.rocks/all-leaks.json'
@@ -78,6 +102,9 @@ export default {
           }
         })
       })
+      .then(() => {
+        setTimeout(() => loadingComponent.close(), 200)
+      })
   }
 }
 </script>
@@ -85,5 +112,20 @@ export default {
 <style>
 .panel {
   margin-bottom: 0 !important;
+}
+
+.preview-video {
+  margin-bottom: 1rem;
+}
+
+.preview-video .vjs-big-play-button {
+  left: 50%;
+  top: 50%;
+  margin-left: -1.5em;
+  margin-top: -0.75em;
+}
+
+.preview-video .vjs-current-time {
+  display: inline;
 }
 </style>
