@@ -114,13 +114,13 @@ export default {
 }
 
 .preview-video .vjs-big-play-button {
-  left: 50%;
-  top: 50%;
-  margin-left: -1.5em;
-  margin-top: -0.75em;
+  left: 50% !important;
+  top: 50% !important;
+  margin-left: -1.5em !important;
+  margin-top: -0.75em !important;
 }
 
 .preview-video .vjs-current-time {
-  display: inline;
+  display: inline !important;
 }
 </style>
