@@ -115,8 +115,10 @@ var webpackConfig = merge(baseWebpackConfig, {
         '/about/timeline',
         '/about/staff',
         '/about/here',
+        '/downloads',
         '/links',
         '/news',
+        '/previews',
         '/schedule'
       ]
     )

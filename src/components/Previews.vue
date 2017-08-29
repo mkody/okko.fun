@@ -1,5 +1,5 @@
 <template>
-  <div id="leaks">
+  <div id="previews">
     <h3 class="title">Previews</h3>
     <h5 class="subtitle">
       Also known as <i>leaks</i>. Spoilers!<br>
@@ -41,9 +41,9 @@
 
 <script>
 export default {
-  name: 'leaks',
+  name: 'previews',
   metaInfo: {
-    title: 'Leaks'
+    title: 'Previews'
   },
   data () {
     return {

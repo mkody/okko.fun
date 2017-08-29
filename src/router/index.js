@@ -7,10 +7,10 @@ import AboutShow from '@/components/AboutShow'
 import AboutStaff from '@/components/AboutStaff'
 import AboutUs from '@/components/AboutUs'
 import Downloads from '@/components/Downloads'
-import Leaks from '@/components/Leaks'
-import Links from '@/components/Links'
 import Home from '@/components/Home'
+import Links from '@/components/Links'
 import News from '@/components/News'
+import Previews from '@/components/Previews'
 import Schedule from '@/components/Schedule'
 import Timeline from '@/components/Timeline'
 
@@ -56,11 +56,6 @@ export default new Router({
       component: Downloads
     },
     {
-      path: '/previews',
-      name: 'Leaks',
-      component: Leaks
-    },
-    {
       path: '/links',
       name: 'Links',
       component: Links
@@ -69,6 +64,11 @@ export default new Router({
       path: '/news',
       name: 'News',
       component: News
+    },
+    {
+      path: '/previews',
+      name: 'Previews',
+      component: Previews
     },
     {
       path: '/schedule',
