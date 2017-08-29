@@ -23,6 +23,10 @@
             Schedule
           </router-link>
 
+          <router-link class="navbar-item" to="/previews">
+            Previews (Leaks)
+          </router-link>
+
           <div class="navbar-item has-dropdown is-hoverable">
             <router-link class="navbar-link" to="/about">
               About

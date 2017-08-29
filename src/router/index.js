@@ -6,6 +6,8 @@ import About from '@/components/About'
 import AboutShow from '@/components/AboutShow'
 import AboutStaff from '@/components/AboutStaff'
 import AboutUs from '@/components/AboutUs'
+import Downloads from '@/components/Downloads'
+import Leaks from '@/components/Leaks'
 import Links from '@/components/Links'
 import Home from '@/components/Home'
 import News from '@/components/News'
@@ -47,6 +49,16 @@ export default new Router({
       path: '/about/here',
       name: 'AboutUs',
       component: AboutUs
+    },
+    {
+      path: '/downloads',
+      name: 'Downloads',
+      component: Downloads
+    },
+    {
+      path: '/previews',
+      name: 'Leaks',
+      component: Leaks
     },
     {
       path: '/links',
