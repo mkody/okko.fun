@@ -8,6 +8,7 @@ import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
 // Cool stuff
 import VueImg from 'v-img'
+import VueFilter from 'vue-filter'
 // Our components
 import MainFooter from '@/components/MainFooter'
 import MainHeader from '@/components/MainHeader'
@@ -15,8 +16,12 @@ import PageNotReady from '@/components/PageNotReady'
 
 Vue.config.productionTip = false
 
-Vue.use(Buefy, {defaultIconPack: 'fa'})
+Vue.use(Buefy, {
+  defaultIconPack: 'fa',
+  defaultTooltipAnimated: true
+})
 Vue.use(VueImg)
+Vue.use(VueFilter)
 
 // Load components
 Vue.component('main-footer', MainFooter)
