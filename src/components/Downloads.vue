@@ -274,7 +274,7 @@ export default {
   mounted () {
     // Shortcut and URL to our API
     var t = this
-    var checkCountry = 'https://okko-region.herokuapp.com/json/'
+    // var checkCountry = 'https://okko-region.herokuapp.com/json/'
     var apiUrl = 'https://data.okko.fun/api/latest/downloads.json'
 
     if (localStorage.getItem('awesome') === 'yes') {
