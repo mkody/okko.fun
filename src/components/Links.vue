@@ -93,7 +93,7 @@ export default {
             },
             {
               title: '(US) Amazon',
-              link: 'https://www.amazon.com/Lets-Be-Heroes/dp/B071X4DXS1'
+              link: 'https://www.amazon.com/gp/video/detail/B074MKCX4M'
             },
             {
               title: '(US) Google Play',
