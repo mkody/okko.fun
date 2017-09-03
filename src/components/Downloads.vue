@@ -352,12 +352,13 @@ export default {
 }
 
 .legal-links {
-  margin: 1.5rem 1.5rem 0;
+  margin: 1.5rem 1.5rem 0 !important;
   text-align: center;
 }
 
 .dl-entries {
-  margin-top: 1.5rem;
+  margin-top: 1.5rem !important;
+
   .dl-entry {
     display: flex;
     flex-direction: row;
