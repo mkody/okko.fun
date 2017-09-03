@@ -1,6 +1,6 @@
 <template>
   <div id="links">
-    <h3 class="title">Links & Ressources</h3>
+    <h3 class="title">Links & Resources</h3>
     <h5 class="subtitle">Where to find more fans or know more about the show.</h5>
 
     <div class="columns is-multiline">
@@ -42,7 +42,7 @@
 export default {
   name: 'links',
   metaInfo: {
-    title: 'Links & Ressources'
+    title: 'Links & Resources'
   },
   data () {
     return {
