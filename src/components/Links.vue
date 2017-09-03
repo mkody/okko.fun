@@ -46,87 +46,24 @@ export default {
   },
   data () {
     return {
-      categories: [
-        {
-          title: 'Official',
-          description: 'Links to official pages and websites.',
-          links: [
-            {
-              title: 'Crew Tumblr',
-              link: 'https://ok-ko.tumblr.com/'
-            },
-            {
-              title: '(Game) OK, K.O.! Lakewood Plaza Turbo!',
-              link: 'http://dblstallion.com/ok-k-o-lakewood-plaza-turbo'
-            }
-          ]
-        },
-        {
-          title: 'Wikis',
-          description: 'Learn more about the show or complete the articles to help the others!',
-          links: [
-            {
-              title: 'OK K.O.! Let\'s Be Heroes Wiki - Fandom',
-              link: 'http://ok-ko.wikia.com/'
-            },
-            {
-              title: 'OK K.O.! Let\'s Be Heroes - Wikipedia',
-              link: 'https://en.wikipedia.org/wiki/OK_K.O.!_Let%27s_Be_Heroes'
-            }
-          ]
-        },
-        {
-          title: 'Watch the show',
-          description: 'The list to some official sources.',
-          links: [
-            {
-              title: '(US) CN App',
-              link: 'http://www.cartoonnetwork.com/apps/cartoon-network/cartoon-network/index.html'
-            },
-            {
-              title: '(US) CN Website',
-              link: 'http://www.cartoonnetwork.com/video/ok-ko/episodes/index.html'
-            },
-            {
-              title: '(US) iTunes',
-              link: 'https://itunes.apple.com/us/tv-season/ok-k-o-lets-be-heroes-vol-1/id1237702047'
-            },
-            {
-              title: '(US) Amazon',
-              link: 'https://www.amazon.com/gp/video/detail/B074MKCX4M'
-            },
-            {
-              title: '(US) Google Play',
-              link: 'https://play.google.com/store/tv/show/OK_K_O_Let_s_Be_Heroes?id=HYu1ZYp6rL34jqCclgJrWw'
-            }
-          ]
-        },
-        {
-          title: 'Cool Community Stuff',
-          description: 'Fan-made content worth to mention',
-          links: [
-            {
-              title: 'OK KO: PRESS START!!',
-              link: 'https://okko-press-start.tumblr.com/post/163639104935'
-            }
-          ]
-        },
-        {
-          title: 'Discord Servers',
-          description: 'Here\'s some Discord servers. I know there may be tens of them, but have some picked ones.',
-          links: [
-            {
-              title: '/r/OKKO',
-              link: 'https://discord.gg/EksrtYZ'
-            },
-            {
-              title: 'Kian\'s "OK K.O.! Let\'s Be Heroes"',
-              link: 'https://discord.gg/YPcNwz7'
-            }
-          ]
-        }
-      ]
+      categories: []
     }
+  },
+  mounted () {
+    // Shortcut and URL to our API
+    var t = this
+    var apiUrl = 'https://data.okko.fun/api/latest/links.json'
+
+    // Fetch our API
+    fetch(apiUrl)
+      .then(data => {
+        return data.json()
+      }, err => {
+        console.log(err)
+      })
+      .then(json => {
+        t.categories = json
+      })
   }
 }
 </script>

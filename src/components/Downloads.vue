@@ -282,6 +282,7 @@ export default {
       return
     }
 
+    /*
     fetch(checkCountry)
       .then(data => {
         return data.json()
@@ -296,50 +297,53 @@ export default {
       })
       .then(json => {
         console.log(json)
-        if (json['country_code'] !== 'US' || localStorage.getItem('ImADick') === 'totally') {
-          // Fetch our API
-          fetch(apiUrl)
-            .then(data => {
-              return data.json()
-            }, err => {
-              console.error(err)
-            }).catch(() => {
-              t.$dialog.alert({
-                title: 'Something went wrong!',
-                message: 'Sorry we broke. Please try again later!<br>(If needed, send us a tweet.)',
-                type: 'is-danger',
-                hasIcon: true
-              })
+        if (json['country_code'] !== 'A1' || localStorage.getItem('ImADick') === 'totally') {
+    */
+    // Fetch our API
+    fetch(apiUrl)
+      .then(data => {
+        return data.json()
+      }, err => {
+        console.error(err)
+      }).catch(() => {
+        t.$dialog.alert({
+          title: 'Something went wrong!',
+          message: 'Sorry we broke. Please try again later!<br>(If needed, send us a tweet.)',
+          type: 'is-danger',
+          hasIcon: true
+        })
+      })
+      .then(json => {
+        if (json['error']) {
+          if (json['error']['code'] === 451) {
+            t.restricted = true
+            localStorage.setItem('awesome', 'yes')
+          } else {
+            t.$dialog.alert({
+              title: 'Something went wrong!',
+              message: json['error']['message'],
+              type: 'is-danger',
+              hasIcon: true
             })
-            .then(json => {
-              if (json['error']) {
-                if (json['error']['code'] === 451) {
-                  t.restricted = true
-                  localStorage.setItem('awesome', 'yes')
-                } else {
-                  t.$dialog.alert({
-                    title: 'Something went wrong!',
-                    message: json['error']['message'],
-                    type: 'is-danger',
-                    hasIcon: true
-                  })
-                }
-                return
-              }
-              t.ep = json['episodes']['list']
-              t.ep_legal = json['episodes']['legal_links']
-              t.sh = json['shorts']['list']
-              t.sh_legal = json['shorts']['legal_links']
-              t.co = json['comics']['list']
-              t.co_legal = json['comics']['legal_links']
-              t.mu = json['soundtrack']['list']
-              t.mu_legal = json['soundtrack']['legal_links']
-            })
+          }
+          return
+        }
+        t.ep = json['episodes']['list']
+        t.ep_legal = json['episodes']['legal_links']
+        t.sh = json['shorts']['list']
+        t.sh_legal = json['shorts']['legal_links']
+        t.co = json['comics']['list']
+        t.co_legal = json['comics']['legal_links']
+        t.mu = json['soundtrack']['list']
+        t.mu_legal = json['soundtrack']['legal_links']
+      })
+    /*
         } else {
           t.restricted = true
           localStorage.setItem('awesome', 'yes')
         }
       })
+    */
   }
 }
 </script>
