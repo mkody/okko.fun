@@ -28,9 +28,9 @@
           </a>
         </div>
 
-        <div class="dl-entries columns is-multiline">
+        <div class="dl-entries columns is-multiline is-mobile is-centered">
           <div
-            class="dl-entry column is-10 is-offset-1"
+            class="dl-entry column is-10"
             v-for="l in ep"
             :key="l.code">
             <span class="dl-title">

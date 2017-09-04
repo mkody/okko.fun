@@ -7,8 +7,8 @@
       <a target="_blank" href="https://cnschedulearchive.tumblr.com/">CN Schedule Archive</a> - <a target="_blank" href="https://cn.sug.rocks/">CN Online Schedule</a>
     </div>
 
-    <div class="columns is-multiline">
-      <div class="column is-8 is-offset-2 card"
+    <div class="columns is-multiline is-mobile is-centered">
+      <div class="column is-8 card"
         v-for="episode in episodes"
         :key="episode.timestamp">
         <div class="content">
