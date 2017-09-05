@@ -6,6 +6,7 @@ import router from './router'
 // Styles
 import Buefy from 'buefy'
 import 'buefy/lib/buefy.css'
+import 'vue2-animate/dist/vue2-animate.min.css'
 // Cool stuff
 import VueImg from 'v-img'
 import VueFilter from 'vue-filter'

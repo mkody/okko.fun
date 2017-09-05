@@ -3,7 +3,7 @@
     <h3 class="title">Links & Resources</h3>
     <h5 class="subtitle">Where to find more fans or know more about the show.</h5>
 
-    <div class="columns is-multiline">
+    <transition-group name="fadeUp" tag="div" class="columns is-multiline">
       <div
         class="column is-half"
         v-for="category in categories"
@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </transition-group>
 
     <div class="notification is-info">
       <b>Found something useful to add?</b> Please tell us on <a class="is-underline" href="https://twitter.com/OKKOfun">Twitter</a> or via email (contact@okko.fun) and we'll take a look!<br>

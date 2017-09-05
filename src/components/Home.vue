@@ -7,89 +7,92 @@
       </div>
       <div class="column is-two-thirds-tablet">
         <h5 class="subtitle">Latest from the official Tumblr</h5>
-        <div class="box" v-if="!tumblr.latest">
-          <strong>Loading...</strong>
-        </div>
-        <div class="card" v-if="tumblr.latest">
-          <div class="card-image">
-            <figure
-              class="image-center"
-              v-if="tumblr.latest['embed']"
-              v-html="tumblr.latest['embed']['html']">
-            </figure>
-            <figure
-              class="image-center"
-              v-if="tumblr.latest['photos']">
-              <img v-img :src="tumblr.latest['photos'][0]">
-            </figure>
-            <div
-              class="columns is-multiline"
-              v-if="tumblr.latest['photos'].length > 1">
-              <figure
-                class="column is-one-quarter image-thumbnails"
-                v-for="(i, j) in tumblr.latest['photos'].slice(1)"
-                :key="j">
-                <img v-img :src="i">
-              </figure>
-            </div>
-          </div>
 
-          <div class="card-content">
-            <div class="media">
-              <div class="media-left">
-                <figure class="image is-48x48">
-                  <img :src="tumblr.latest['author']['avatar']" :alt="tumblr.latest['author']['name']">
+        <transition name="fadeUp">
+          <div class="card" v-if="tumblr.latest">
+            <div class="card-image">
+              <figure
+                class="image-center"
+                v-if="tumblr.latest['embed']"
+                v-html="tumblr.latest['embed']['html']">
+              </figure>
+              <figure
+                class="image-center"
+                v-if="tumblr.latest['photos']">
+                <img v-img :src="tumblr.latest['photos'][0]">
+              </figure>
+              <div
+                class="columns is-multiline"
+                v-if="tumblr.latest['photos'].length > 1">
+                <figure
+                  class="column is-one-quarter image-thumbnails"
+                  v-for="(i, j) in tumblr.latest['photos'].slice(1)"
+                  :key="j">
+                  <img v-img :src="i">
                 </figure>
               </div>
-              <div class="media-content">
-                <p class="title is-4">
-                  {{ tumblr.latest['author']['name'] }}
-                </p>
-                <p class="subtitle is-6">
-                  <a :href="tumblr.latest['url']">
-                    {{ getDate(tumblr.latest['timestamp']) }}
-                  </a>
-                </p>
-              </div>
             </div>
 
-            <div class="content">
-              <div v-html="tumblr.latest['caption']"></div>
-              <small>
-                <span v-if="tumblr.latest['tags'].length > 0">
-                  <br> Tags:
-                  <a
-                    v-for="l in tumblr.latest['tags']"
-                    :key="l.name"
-                    :href="l.url">
-                    #{{ l.name }}
-                  </a>
-                </span>
-              </small>
-            </div>
-          </div>
-        </div>
-        <div
-          class="box"
-          v-for="(p, j) in tumblr.previous"
-          :key="j">
-          <article class="media">
-            <figure class="media-left">
-              <p class="image is-64x64">
-                <img :src="p['author']['avatar']">
-              </p>
-            </figure>
-            <div class="media-content">
+            <div class="card-content">
+              <div class="media">
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <img :src="tumblr.latest['author']['avatar']" :alt="tumblr.latest['author']['name']">
+                  </figure>
+                </div>
+                <div class="media-content">
+                  <p class="title is-4">
+                    {{ tumblr.latest['author']['name'] }}
+                  </p>
+                  <p class="subtitle is-6">
+                    <a :href="tumblr.latest['url']">
+                      {{ getDate(tumblr.latest['timestamp']) }}
+                    </a>
+                  </p>
+                </div>
+              </div>
+
               <div class="content">
-                <p>
-                  <strong>{{ p['author']['name'] }}</strong> <small><a :href="p['url']">{{ getDate(p['timestamp']) }}</a></small>
-                  <br>
-                  {{ p['summary'] }}
-                </p>
+                <div v-html="tumblr.latest['caption']"></div>
+                <small>
+                  <span v-if="tumblr.latest['tags'].length > 0">
+                    <br> Tags:
+                    <a
+                      v-for="l in tumblr.latest['tags']"
+                      :key="l.name"
+                      :href="l.url">
+                      #{{ l.name }}
+                    </a>
+                  </span>
+                </small>
               </div>
             </div>
-          </article>
-        </div>
+          </div>
+        </transition>
+
+        <transition-group name="fadeUp">
+          <div
+            class="box"
+            v-for="(p, j) in tumblr.previous"
+            :key="j">
+            <article class="media">
+              <figure class="media-left">
+                <p class="image is-64x64">
+                  <img :src="p['author']['avatar']">
+                </p>
+              </figure>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong>{{ p['author']['name'] }}</strong> <small><a :href="p['url']">{{ getDate(p['timestamp']) }}</a></small>
+                    <br>
+                    {{ p['summary'] }}
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </transition-group>
       </div>
     </div>
   </div>

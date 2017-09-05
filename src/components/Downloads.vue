@@ -5,249 +5,254 @@
       Download or watch episodes and shorts.
     </h5>
 
-    <div class="notification is-danger" v-if="restricted">
-      <strong>Sorry, but we can't show you this page.</strong><br>
-      It looks like you're in a country where the show is freely available from legal sources.<br>
-      Please use those sources instead of pirating the show. Thanks!
-    </div>
+    <transition name="fadeLeft">
+      <div class="notification is-danger" v-if="restricted">
+        <strong>Sorry, but we can't show you this page.</strong><br>
+        It looks like you're in a country where the show is freely available from legal sources.<br>
+        Please use those sources instead of pirating the show. Thanks!
+      </div>
+    </transition>
 
-    <b-tabs
-      position="is-centered"
-      class="block"
-      v-model="activeTab">
-      <b-tab-item label="Episodes" icon="television" v-if="ep.length > 0">
-        <div class="box legal-links" v-if="ep_legal !== null">
-          Please consider official and legal links if available.<br>
-          <a
-            class="button"
-            v-for="t in ep_legal"
-            :key="t.url"
-            :href="t.url">
-            <b-icon :icon="t.icon"></b-icon>
-            <span>{{ t.title }}</span>
-          </a>
-        </div>
-
-        <div class="dl-entries columns is-multiline is-mobile is-centered">
-          <div
-            class="dl-entry column is-10"
-            v-for="l in ep"
-            :key="l.code">
-            <span class="dl-title">
-              S{{ l.season.toString() | leftPad(2, '0') }}E{{ l.episode.toString() | leftPad(2, '0') }}:
-              <strong>{{ l.title }}</strong>
-            </span>
-
-            <span class="dl-links">
-              <b-tooltip label="Direct" v-if="l.direct">
-                <a class="button is-small is-dark" :href="l.direct">
-                  <b-icon icon="download"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label=".torrent" v-if="l.torrent_file">
-                <a class="button is-small is-dark" :href="l.torrent_file">
-                  <b-icon icon="connectdevelop"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="Magnet" v-if="l.magnet">
-                <a class="button is-small is-dark" :href="l.magnet">
-                  <b-icon icon="magnet"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="Mega" v-if="l.mega">
-                <a class="button is-small is-dark" :href="l.mega">
-                  <b-icon icon="cloud-download"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="Dailymotion" v-if="l.dailymotion">
-                <a class="button is-small is-dark" :href="l.dailymotion">
-                  <b-icon icon="video-camera"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="CTOON" v-if="l.ctoon">
-                <a class="button is-small is-dark" :href="l.ctoon">
-                  <b-icon icon="play-circle"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="Other" v-if="l.other">
-                <a class="button is-small is-dark" :href="l.other">
-                  <b-icon icon="external-link"></b-icon>
-                </a>
-              </b-tooltip>
-            </span>
+    <transition name="fadeUp">
+      <b-tabs
+        position="is-centered"
+        class="block"
+        v-model="activeTab"
+        v-if="ep.length > 0">
+        <b-tab-item label="Episodes" icon="television" v-if="ep.length > 0">
+          <div class="box legal-links" v-if="ep_legal !== null">
+            Please consider official and legal links if available.<br>
+            <a
+              class="button"
+              v-for="t in ep_legal"
+              :key="t.url"
+              :href="t.url">
+              <b-icon :icon="t.icon"></b-icon>
+              <span>{{ t.title }}</span>
+            </a>
           </div>
-        </div>
-      </b-tab-item>
 
-      <b-tab-item label="Shorts" icon="video-camera" v-if="sh.length > 0">
-        <div class="box legal-links" v-if="sh_legal !== null">
-          Please consider official and legal links if available.<br>
-          <a
-            class="button"
-            v-for="t in sh_legal"
-            :key="t.url"
-            :href="t.url">
-            <b-icon :icon="t.icon"></b-icon>
-            <span>{{ t.title }}</span>
-          </a>
-        </div>
+          <div class="dl-entries columns is-multiline is-mobile is-centered">
+            <div
+              class="dl-entry column is-10"
+              v-for="l in ep"
+              :key="l.code">
+              <span class="dl-title">
+                S{{ l.season.toString() | leftPad(2, '0') }}E{{ l.episode.toString() | leftPad(2, '0') }}:
+                <strong>{{ l.title }}</strong>
+              </span>
 
-        <div class="dl-entries columns is-multiline">
-          <div
-            class="dl-entry column is-10 is-offset-1"
-            v-for="l in sh"
-            :key="l.code">
-            <span class="dl-title">
-              <strong>{{ l.title }}</strong>
-            </span>
-
-            <span class="dl-links">
-              <b-tooltip label="Direct" v-if="l.direct">
-                <a class="button is-small is-dark" :href="l.direct">
-                  <b-icon icon="download"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label=".torrent" v-if="l.torrent_file">
-                <a class="button is-small is-dark" :href="l.torrent_file">
-                  <b-icon icon="connectdevelop"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="Magnet" v-if="l.magnet">
-                <a class="button is-small is-dark" :href="l.magnet">
-                  <b-icon icon="magnet"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="Mega" v-if="l.mega">
-                <a class="button is-small is-dark" :href="l.mega">
-                  <b-icon icon="cloud-download"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="Dailymotion" v-if="l.dailymotion">
-                <a class="button is-small is-dark" :href="l.dailymotion">
-                  <b-icon icon="video-camera"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="CTOON" v-if="l.ctoon">
-                <a class="button is-small is-dark" :href="l.ctoon">
-                  <b-icon icon="play-circle"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="Other" v-if="l.other">
-                <a class="button is-small is-dark" :href="l.other">
-                  <b-icon icon="external-link"></b-icon>
-                </a>
-              </b-tooltip>
-            </span>
+              <span class="dl-links">
+                <b-tooltip label="Direct" v-if="l.direct">
+                  <a class="button is-small is-dark" :href="l.direct">
+                    <b-icon icon="download"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label=".torrent" v-if="l.torrent_file">
+                  <a class="button is-small is-dark" :href="l.torrent_file">
+                    <b-icon icon="connectdevelop"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="Magnet" v-if="l.magnet">
+                  <a class="button is-small is-dark" :href="l.magnet">
+                    <b-icon icon="magnet"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="Mega" v-if="l.mega">
+                  <a class="button is-small is-dark" :href="l.mega">
+                    <b-icon icon="cloud-download"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="Dailymotion" v-if="l.dailymotion">
+                  <a class="button is-small is-dark" :href="l.dailymotion">
+                    <b-icon icon="video-camera"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="CTOON" v-if="l.ctoon">
+                  <a class="button is-small is-dark" :href="l.ctoon">
+                    <b-icon icon="play-circle"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="Other" v-if="l.other">
+                  <a class="button is-small is-dark" :href="l.other">
+                    <b-icon icon="external-link"></b-icon>
+                  </a>
+                </b-tooltip>
+              </span>
+            </div>
           </div>
-        </div>
-      </b-tab-item>
+        </b-tab-item>
 
-      <b-tab-item label="Comics" icon="book" v-if="co.length > 0">
-        <div class="box legal-links" v-if="co_legal !== null">
-          Please consider official and legal links if available.<br>
-          <a
-            class="button"
-            v-for="t in co_legal"
-            :key="t.url"
-            :href="t.url">
-            <b-icon :icon="t.icon"></b-icon>
-            <span>{{ t.title }}</span>
-          </a>
-        </div>
-
-        <div class="dl-entries columns is-multiline">
-          <div
-            class="dl-entry column is-10 is-offset-1"
-            v-for="l in co"
-            :key="l.code">
-            <span class="dl-title">
-              <strong>{{ l.title }}</strong>
-            </span>
-
-            <span class="dl-links">
-              <b-tooltip label="Direct" v-if="l.direct">
-                <a class="button is-small is-dark" :href="l.direct">
-                  <b-icon icon="download"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label=".torrent" v-if="l.torrent_file">
-                <a class="button is-small is-dark" :href="l.torrent_file">
-                  <b-icon icon="connectdevelop"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="Magnet" v-if="l.magnet">
-                <a class="button is-small is-dark" :href="l.magnet">
-                  <b-icon icon="magnet"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="Mega" v-if="l.mega">
-                <a class="button is-small is-dark" :href="l.mega">
-                  <b-icon icon="cloud-download"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="Other" v-if="l.other">
-                <a class="button is-small is-dark" :href="l.other">
-                  <b-icon icon="external-link"></b-icon>
-                </a>
-              </b-tooltip>
-            </span>
+        <b-tab-item label="Shorts" icon="video-camera" v-if="sh.length > 0">
+          <div class="box legal-links" v-if="sh_legal !== null">
+            Please consider official and legal links if available.<br>
+            <a
+              class="button"
+              v-for="t in sh_legal"
+              :key="t.url"
+              :href="t.url">
+              <b-icon :icon="t.icon"></b-icon>
+              <span>{{ t.title }}</span>
+            </a>
           </div>
-        </div>
-      </b-tab-item>
 
-      <b-tab-item label="Soundtrack" icon="music" v-if="mu.length > 0">
-        <div class="box legal-links" v-if="mu_legal !== null">
-          Please consider official and legal links if available.<br>
-          <a
-            class="button"
-            v-for="t in mu_legal"
-            :key="t.url"
-            :href="t.url">
-            <b-icon :icon="t.icon"></b-icon>
-            <span>{{ t.title }}</span>
-          </a>
-        </div>
+          <div class="dl-entries columns is-multiline">
+            <div
+              class="dl-entry column is-10 is-offset-1"
+              v-for="l in sh"
+              :key="l.code">
+              <span class="dl-title">
+                <strong>{{ l.title }}</strong>
+              </span>
 
-        <div class="dl-entries columns is-multiline">
-          <div
-            class="dl-entry column is-10 is-offset-1"
-            v-for="l in mu"
-            :key="l.code">
-            <span class="dl-title">
-              <strong>{{ l.title }}</strong>
-            </span>
-
-            <span class="dl-links">
-              <b-tooltip label="Direct" v-if="l.direct">
-                <a class="button is-small is-dark" :href="l.direct">
-                  <b-icon icon="download"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label=".torrent" v-if="l.torrent_file">
-                <a class="button is-small is-dark" :href="l.torrent_file">
-                  <b-icon icon="connectdevelop"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="Magnet" v-if="l.magnet">
-                <a class="button is-small is-dark" :href="l.magnet">
-                  <b-icon icon="magnet"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="Mega" v-if="l.mega">
-                <a class="button is-small is-dark" :href="l.mega">
-                  <b-icon icon="cloud-download"></b-icon>
-                </a>
-              </b-tooltip>
-              <b-tooltip label="Other" v-if="l.other">
-                <a class="button is-small is-dark" :href="l.other">
-                  <b-icon icon="external-link"></b-icon>
-                </a>
-              </b-tooltip>
-            </span>
+              <span class="dl-links">
+                <b-tooltip label="Direct" v-if="l.direct">
+                  <a class="button is-small is-dark" :href="l.direct">
+                    <b-icon icon="download"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label=".torrent" v-if="l.torrent_file">
+                  <a class="button is-small is-dark" :href="l.torrent_file">
+                    <b-icon icon="connectdevelop"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="Magnet" v-if="l.magnet">
+                  <a class="button is-small is-dark" :href="l.magnet">
+                    <b-icon icon="magnet"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="Mega" v-if="l.mega">
+                  <a class="button is-small is-dark" :href="l.mega">
+                    <b-icon icon="cloud-download"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="Dailymotion" v-if="l.dailymotion">
+                  <a class="button is-small is-dark" :href="l.dailymotion">
+                    <b-icon icon="video-camera"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="CTOON" v-if="l.ctoon">
+                  <a class="button is-small is-dark" :href="l.ctoon">
+                    <b-icon icon="play-circle"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="Other" v-if="l.other">
+                  <a class="button is-small is-dark" :href="l.other">
+                    <b-icon icon="external-link"></b-icon>
+                  </a>
+                </b-tooltip>
+              </span>
+            </div>
           </div>
-        </div>
-      </b-tab-item>
-    </b-tabs>
+        </b-tab-item>
+
+        <b-tab-item label="Comics" icon="book" v-if="co.length > 0">
+          <div class="box legal-links" v-if="co_legal !== null">
+            Please consider official and legal links if available.<br>
+            <a
+              class="button"
+              v-for="t in co_legal"
+              :key="t.url"
+              :href="t.url">
+              <b-icon :icon="t.icon"></b-icon>
+              <span>{{ t.title }}</span>
+            </a>
+          </div>
+
+          <div class="dl-entries columns is-multiline">
+            <div
+              class="dl-entry column is-10 is-offset-1"
+              v-for="l in co"
+              :key="l.code">
+              <span class="dl-title">
+                <strong>{{ l.title }}</strong>
+              </span>
+
+              <span class="dl-links">
+                <b-tooltip label="Direct" v-if="l.direct">
+                  <a class="button is-small is-dark" :href="l.direct">
+                    <b-icon icon="download"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label=".torrent" v-if="l.torrent_file">
+                  <a class="button is-small is-dark" :href="l.torrent_file">
+                    <b-icon icon="connectdevelop"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="Magnet" v-if="l.magnet">
+                  <a class="button is-small is-dark" :href="l.magnet">
+                    <b-icon icon="magnet"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="Mega" v-if="l.mega">
+                  <a class="button is-small is-dark" :href="l.mega">
+                    <b-icon icon="cloud-download"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="Other" v-if="l.other">
+                  <a class="button is-small is-dark" :href="l.other">
+                    <b-icon icon="external-link"></b-icon>
+                  </a>
+                </b-tooltip>
+              </span>
+            </div>
+          </div>
+        </b-tab-item>
+
+        <b-tab-item label="Soundtrack" icon="music" v-if="mu.length > 0">
+          <div class="box legal-links" v-if="mu_legal !== null">
+            Please consider official and legal links if available.<br>
+            <a
+              class="button"
+              v-for="t in mu_legal"
+              :key="t.url"
+              :href="t.url">
+              <b-icon :icon="t.icon"></b-icon>
+              <span>{{ t.title }}</span>
+            </a>
+          </div>
+
+          <div class="dl-entries columns is-multiline">
+            <div
+              class="dl-entry column is-10 is-offset-1"
+              v-for="l in mu"
+              :key="l.code">
+              <span class="dl-title">
+                <strong>{{ l.title }}</strong>
+              </span>
+
+              <span class="dl-links">
+                <b-tooltip label="Direct" v-if="l.direct">
+                  <a class="button is-small is-dark" :href="l.direct">
+                    <b-icon icon="download"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label=".torrent" v-if="l.torrent_file">
+                  <a class="button is-small is-dark" :href="l.torrent_file">
+                    <b-icon icon="connectdevelop"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="Magnet" v-if="l.magnet">
+                  <a class="button is-small is-dark" :href="l.magnet">
+                    <b-icon icon="magnet"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="Mega" v-if="l.mega">
+                  <a class="button is-small is-dark" :href="l.mega">
+                    <b-icon icon="cloud-download"></b-icon>
+                  </a>
+                </b-tooltip>
+                <b-tooltip label="Other" v-if="l.other">
+                  <a class="button is-small is-dark" :href="l.other">
+                    <b-icon icon="external-link"></b-icon>
+                  </a>
+                </b-tooltip>
+              </span>
+            </div>
+          </div>
+        </b-tab-item>
+      </b-tabs>
+    </transition>
   </div>
 </template>
 

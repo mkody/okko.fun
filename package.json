@@ -21,6 +21,7 @@
     "vue-meta": "^1.1.0",
     "vue-router": "^2.3.1",
     "vue-video-player": "^4.0.3",
+    "vue2-animate": "^1.0.4",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {

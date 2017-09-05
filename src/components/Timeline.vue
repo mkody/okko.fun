@@ -1,5 +1,5 @@
 <template>
-  <div id="timeline">
+  <transition-group name="fadeUp" tag="div" id="timeline">
     <div class="timeline-item"
       v-for="thing in elements"
       :key="thing.id"
@@ -15,11 +15,7 @@
         <a v-if="thing.url" :href="thing.url" class="button">More...</a>
       </div>
     </div>
-
-    <div class="notification is-info">
-      <b>Found an error or a typo?</b> Please tell us on <a class="is-underline" href="https://twitter.com/OKKOfun">Twitter</a> or <a class="is-underline" href="https://okkofun.tumblr.com">Tumblr</a> and we'll correct it as fast as we can!
-    </div>
-  </div>
+  </transition-group>
 </template>
 
 <script>

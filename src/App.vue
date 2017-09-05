@@ -4,7 +4,13 @@
 
     <section class="section">
       <div class="container is-widescreen">
-        <router-view></router-view>
+        <transition
+          appear
+          name="fade"
+          leave-active-class="fadeOutLeft"
+          mode="out-in">
+          <router-view></router-view>
+        </transition>
       </div>
     </section>
 
@@ -22,5 +28,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import './assets/styles'
+@import './assets/styles';
+
+#app > .section > .container {
+  min-height: calc(100vh - 250px);
+}
 </style>

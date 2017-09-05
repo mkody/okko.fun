@@ -7,17 +7,19 @@
       <a target="_blank" href="https://cnschedulearchive.tumblr.com/">CN Schedule Archive</a> - <a target="_blank" href="https://cn.sug.rocks/">CN Online Schedule</a>
     </div>
 
-    <div class="columns is-multiline is-mobile is-centered">
+    <transition-group name="fadeUp" tag="div" class="columns is-multiline is-mobile is-centered">
       <div class="column is-8 card"
         v-for="episode in episodes"
         :key="episode.timestamp">
         <div class="content">
-          <div class="newnewnewnew" v-if="premiereTs.indexOf(episode.timestamp) > -1">
-            <span style="color: #ec1ad8">NEW</span><br>
-            <span style="color: #0187ff">NEW</span><br>
-            <span style="color: #ffecff">NEW</span><br>
-            <span style="color: #001003">NEW</span>
-          </div>
+          <transition name="zoomLeft">
+            <div class="newnewnewnew" v-if="premiereTs.indexOf(episode.timestamp) > -1">
+              <span style="color: #ec1ad8">NEW</span><br>
+              <span style="color: #0187ff">NEW</span><br>
+              <span style="color: #ffecff">NEW</span><br>
+              <span style="color: #001003">NEW</span>
+            </div>
+          </transition>
           <h4 class="title">
             {{ episode.title }}
           </h4>
@@ -26,7 +28,7 @@
           </h5>
         </div>
       </div>
-    </div>
+    </transition-group>
   </div>
 </template>
 

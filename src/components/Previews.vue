@@ -6,7 +6,7 @@
       <u class="blink">Spoilers!</u>
     </h5>
 
-    <div class="columns is-multiline">
+    <transition-group name="fadeUp" tag="div" class="columns is-multiline">
       <b-panel
         :open="false"
         :collapsible="true"
@@ -49,7 +49,7 @@
           </div>
         </div>
       </b-panel>
-    </div>
+    </transition-group>
   </div>
 </template>
 
