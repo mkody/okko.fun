@@ -2,8 +2,31 @@
   <div id="home">
     <div class="columns is-multiline is-tablet">
       <div class="column is-one-thirds-tablet">
-        <strong>We're still building the website!</strong><br>
-        Some pages might not be complete, but we're getting there. ;)
+        <div class="box">
+          <strong>We're still building the website!</strong><br>
+          Some pages might not be complete, but we're getting there. ;)
+        </div>
+
+        <br>
+
+        <transition name="fadeUp">
+          <div v-if="episodes.length > 0">
+            <h5 class="subtitle">New New New New on TV</h5>
+            <div class="columns is-multiline is-desktop is-centered">
+              <div class="column is-12 card"
+                v-for="episode in episodes"
+                :key="episode.timestamp">
+                <div class="content">
+                  <strong>
+                    {{ episode.title }}
+                  </strong>
+                  <br>
+                  {{ getDate(episode.timestamp) }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
       </div>
       <div class="column is-two-thirds-tablet">
         <h5 class="subtitle">Latest from the official Tumblr</h5>
@@ -106,10 +129,14 @@ export default {
   },
   data () {
     return {
+      tweets: [],
       tumblr: {
         latest: false,
         previous: []
-      }
+      },
+      episodes: [],
+      currentTS: parseInt(Date.now() / 1000, 10),
+      premiereTs: []
     }
   },
   methods: {
@@ -122,6 +149,47 @@ export default {
   mounted () {
     // Shortcut and URL to our API
     var t = this
+    var premieresUrl = 'https://data.okko.fun/api/latest/premiere-ts.json'
+
+    // Fetch our API
+    fetch(premieresUrl)
+      .then(data => {
+        return data.json()
+      }, err => {
+        console.log(err)
+      })
+      .then(json => {
+        Object.keys(json).map(pKey => {
+          t.premiereTs.push(json[pKey]['ts'])
+        })
+      }).then(() => {
+        var scheduleUrl = 'https://api.sug.rocks/cnschedule.json'
+
+        // Fetch our API
+        fetch(scheduleUrl)
+          .then(data => {
+            return data.json()
+          }, err => {
+            console.log(err)
+          })
+          .then(json => {
+            Object.keys(json).map(dayKey => {
+              var day = json[dayKey]
+
+              if (day['source'] === 'Cartoon Network') {
+                Object.keys(day['schedule']).map(scheduleKey => {
+                  var el = day['schedule'][scheduleKey]
+                  if (el['show'] === 'OK K.O.! Let\'s Be Heroes' &&
+                      el['timestamp'] > t.currentTS &&
+                      t.premiereTs.indexOf(el['timestamp']) > -1) {
+                    t.episodes.push(el)
+                  }
+                })
+              }
+            })
+          })
+      })
+
     var postApi = 'https://data.okko.fun/api/latest/tumblr-posts.json'
 
     // Fetch our API

@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <main-header></main-header>
+    <transition
+      appear
+      name="fadeDown">
+      <main-header></main-header>
+    </transition>
 
     <section class="section">
       <div class="container is-widescreen">
