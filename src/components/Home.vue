@@ -39,6 +39,7 @@
                   class="image-center"
                   v-if="tumblr.latest.embed.html.startsWith('\n<video ')">
                   <a target="_blank" :href="tumblr.latest.url">
+                    <span class="ext">Click here to play this media on Tumblr.</span>
                     <img :src="tumblr.latest.embed.thumbnail">
                   </a>
                 </figure>
@@ -234,11 +235,19 @@ export default {
 
 <style lang="scss">
 .image-center {
-  width: 100% !important;
   text-align: center !important;
+  width: 100% !important;
 
   img {
     max-height: 500px !important;
+  }
+
+  .ext {
+    background-color: white;
+    border-radius: 0 0 15px;
+    box-shadow: 6px 6px 10px 3px rgba(0, 0, 0, 0.42);
+    padding: 7px 15px;
+    position: absolute;
   }
 }
 
@@ -251,7 +260,7 @@ export default {
 }
 
 .box {
-    margin-bottom: 0 !important;
-    margin-top: 0.5rem !important;
+  margin-bottom: 0 !important;
+  margin-top: 0.5rem !important;
 }
 </style>
