@@ -30,11 +30,6 @@
         </div>
       </div>
     </transition-group>
-
-    <div class="notification is-info">
-      <b>Found something useful to add?</b> Please tell us on <a class="is-underline" href="https://twitter.com/OKKOfun">Twitter</a> or via email (contact@okko.fun) and we'll take a look!<br>
-      <small>(Note: don't suggest Discord servers.)</small>
-    </div>
   </div>
 </template>
 

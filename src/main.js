@@ -13,6 +13,7 @@ import 'vue2-animate/dist/vue2-animate.min.css'
 // Cool stuff
 import VueImg from 'v-img'
 import VueFilter from 'vue-filter'
+import VueAnalytics from 'vue-analytics'
 // Our components
 import MainFooter from '@/components/MainFooter'
 import MainHeader from '@/components/MainHeader'
@@ -37,6 +38,10 @@ Vue.use(Buefy, {
 })
 Vue.use(VueImg)
 Vue.use(VueFilter)
+Vue.use(VueAnalytics, {
+  id: 'UA-103935709-3',
+  router
+})
 
 // Load components
 Vue.component('main-footer', MainFooter)

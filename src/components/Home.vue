@@ -68,9 +68,14 @@
                     {{ tumblr.latest['author']['name'] }}
                   </p>
                   <p class="subtitle is-6">
-                    <a :href="tumblr.latest['url']">
-                      {{ getDate(tumblr.latest['timestamp']) }}
-                    </a>
+                    <b-tooltip
+                      label="See original post"
+                      dashed
+                      animated>
+                      <a :href="tumblr.latest['url']">
+                        {{ getDate(tumblr.latest['timestamp']) }}
+                      </a>
+                    </b-tooltip>
                   </p>
                 </div>
               </div>
@@ -107,7 +112,16 @@
               <div class="media-content">
                 <div class="content">
                   <p>
-                    <strong>{{ p['author']['name'] }}</strong> <small><a :href="p['url']">{{ getDate(p['timestamp']) }}</a></small>
+                    <strong>{{ p['author']['name'] }}</strong>
+
+                    <b-tooltip
+                      label="See original post"
+                      dashed
+                      animated>
+                      <small>
+                        <a :href="p['url']">{{ getDate(p['timestamp']) }}</a>
+                      </small>
+                    </b-tooltip>
                     <br>
                     {{ p['summary'] }}
                   </p>

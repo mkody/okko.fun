@@ -3,8 +3,23 @@
     <div class="container">
       <div class="content has-text-centered">
         <p>
-          © <b>OKKO.fun</b> 2017<br>
-          <b>OK K.O! Let's Be Heroes</b> TM & © Cartoon Network.
+          <b>OKKO.fun</b> &middot; 2017 &middot; &copy;
+          <b-tooltip
+            label="CTOON Webmedia Group"
+            type="is-dark"
+            dashed
+            animated>
+            CTOON
+          </b-tooltip>
+          <br>
+          <b>OK K.O.! Let's Be Heroes</b> &middot; 2017 &middot; TM & &copy;
+          <b-tooltip
+            label="A Time Warner Company"
+            type="is-dark"
+            dashed
+            animated>
+            Cartoon Network
+          </b-tooltip>
         </p>
         <p>
           <small><i>Website design not final.</i></small>
