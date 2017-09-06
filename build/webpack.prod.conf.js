@@ -11,6 +11,10 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 var PrerenderSpaPlugin = require('prerender-spa-plugin')
+var GitRevisionPlugin = require('git-revision-webpack-plugin')
+
+// init GitRevisionPlugin
+var gitRevisionPlugin = new GitRevisionPlugin()
 
 var env = config.build.env
 
@@ -30,6 +34,9 @@ var webpackConfig = merge(baseWebpackConfig, {
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
+      'VERSION': JSON.stringify(gitRevisionPlugin.version()),
+      'COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
+      'BRANCH': JSON.stringify(gitRevisionPlugin.branch()),
       'process.env': env
     }),
     new webpack.optimize.UglifyJsPlugin({
