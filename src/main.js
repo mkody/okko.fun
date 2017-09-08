@@ -65,9 +65,26 @@ console.log(
 )
 
 /* eslint-disable no-new */
-new Vue({
+var v = new Vue({
   el: '#app',
   router,
   template: '<App/>',
   components: { App }
 })
+
+// Display a snackback if the webworker was updated and ask user to reload the page
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    v.$snackbar.open({
+      message: 'An update is available!',
+      type: 'is-warning',
+      position: 'is-top-left',
+      actionText: 'Reload',
+      duration: 86400000,
+      onAction: () => {
+        // On click on the action button, we force the reload
+        window.location.reload(true)
+      }
+    })
+  })
+}

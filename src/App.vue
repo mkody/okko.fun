@@ -154,6 +154,7 @@ export default {
             return data.json()
           })
           .catch(() => {
+            console.error('Something broke when getting downloads bro.')
             t.downloads.ext_blocked = true
           })
           .then(json => {
@@ -167,6 +168,7 @@ export default {
                   console.error(err)
                 }).catch(() => {
                   console.error('Something broke when getting downloads bro.')
+                  t.downloads.ext_blocked = true
                 })
                 .then(json => {
                   if (json['error']) {
@@ -175,6 +177,7 @@ export default {
                       localStorage.setItem('awesome', 'yes')
                     } else {
                       console.error('Something broke when getting downloads bro.\n' + json['error']['message'])
+                      t.downloads.ext_blocked = true
                     }
                     return
                   }
@@ -187,11 +190,6 @@ export default {
                   t.downloads.mu = json['soundtrack']['list']
                   t.downloads.mu_legal = json['soundtrack']['legal_links']
                 })
-                .then(() => {
-                  setTimeout(() => {
-                    t.$parent.loading = false
-                  }, 1000)
-                })
             } else {
               t.restricted = true
               localStorage.setItem('awesome', 'yes')
@@ -199,9 +197,7 @@ export default {
           })
       })
       .then(() => {
-        setTimeout(() => {
-          t.loading = false
-        }, 1000)
+        t.loading = false
       })
   }
 }
