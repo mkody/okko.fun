@@ -40,7 +40,13 @@
                     v-if="$parent.tumblr.latest.embed.html.startsWith('\n<video ')">
                     <a target="_blank" :href="$parent.tumblr.latest.url">
                       <span class="ext">Click here to play this media on Tumblr.</span>
-                      <img :src="$parent.tumblr.latest.embed.thumbnail">
+                      <img
+                        v-img="{
+                          group: 'tumblr',
+                          src: $parent.tumblr.latest.embed.thumbnail,
+                          cursor: 'zoom-in'
+                        }"
+                        :src="'https://proxy.sug.rocks/x500/' + $parent.tumblr.latest.embed.thumbnail">
                     </a>
                   </figure>
                   <figure
@@ -52,16 +58,28 @@
                 <span v-if="$parent.tumblr.latest.photos">
                   <figure
                     class="image-center">
-                    <img v-img :src="$parent.tumblr.latest.photos[0]">
+                    <img
+                      v-img="{
+                        group: 'tumblr',
+                        src: $parent.tumblr.latest.photos[0],
+                        cursor: 'zoom-in'
+                      }"
+                      :src="'https://proxy.sug.rocks/x500/' + $parent.tumblr.latest.photos[0]">
                   </figure>
                   <div
-                    class="columns is-multiline"
+                    class="columns is-multiline is-mobile"
                     v-if="$parent.tumblr.latest.photos.length > 1">
                     <figure
-                      class="column is-one-quarter image-thumbnails"
+                      class="column is-one-quarter-tablet is-one-third-mobile image-thumbnails"
                       v-for="(i, j) in $parent.tumblr.latest.photos.slice(1)"
                       :key="j">
-                      <img v-img :src="i">
+                      <img
+                        v-img="{
+                          group: 'tumblr',
+                          src: i,
+                          cursor: 'zoom-in'
+                        }"
+                        :src="'https://proxy.sug.rocks/x100/' + i">
                     </figure>
                   </div>
                 </span>
