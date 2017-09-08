@@ -1,7 +1,7 @@
 <template>
   <transition-group name="fadeUp" tag="div" id="timeline">
     <div class="timeline-item"
-      v-for="thing in elements"
+      v-for="thing in $parent.timeline"
       :key="thing.id"
       :id="'event-' + thing.id">
       <!--Icon inside the circle-->
@@ -23,27 +23,6 @@ export default {
   name: 'timeline',
   metaInfo: {
     title: 'Timeline'
-  },
-  data () {
-    return {
-      elements: []
-    }
-  },
-  mounted () {
-    // Shortcut and URL to our API
-    var t = this
-    var apiUrl = 'https://data.okko.fun/api/latest/timeline.json'
-
-    // Fetch our API
-    fetch(apiUrl)
-      .then(data => {
-        return data.json()
-      }, err => {
-        console.log(err)
-      })
-      .then(json => {
-        t.elements = json
-      })
   }
 }
 </script>

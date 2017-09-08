@@ -9,11 +9,11 @@
 
     <transition-group name="fadeUp" tag="div" class="columns is-multiline is-mobile is-centered">
       <div class="column is-8 card"
-        v-for="episode in episodes"
+        v-for="episode in $parent.schedule.episodes"
         :key="episode.timestamp">
         <div class="content">
           <transition name="zoomLeft">
-            <div class="newnewnewnew" v-if="premiereTs.indexOf(episode.timestamp) > -1">
+            <div class="newnewnewnew" v-if="$parent.schedule.premiereTs.indexOf(episode.timestamp) > -1">
               <span style="color: #ec1ad8">NEW</span><br>
               <span style="color: #0187ff">NEW</span><br>
               <span style="color: #ffecff">NEW</span><br>
@@ -24,7 +24,7 @@
             {{ episode.title }}
           </h4>
           <h5 class="subtitle" :data-ts="episode.timestamp">
-            {{ getDate(episode.timestamp) }}
+            {{ $parent.getDate(episode.timestamp) }}
           </h5>
         </div>
       </div>
@@ -40,62 +40,6 @@ export default {
   name: 'schedule',
   metaInfo: {
     title: 'Next TV Airings'
-  },
-  data () {
-    return {
-      episodes: [],
-      currentTS: parseInt(Date.now() / 1000, 10),
-      premiereTs: []
-    }
-  },
-  methods: {
-    getDate: (ts) => {
-      // Get current timestamp and check if current element is on air
-      var dateObj = new Date(ts * 1000)
-      return dateObj.toLocaleString(navigator.language, {weekday: 'long', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'})
-    }
-  },
-  mounted () {
-    // Shortcut and URL to our API
-    var t = this
-    var scheduleUrl = 'https://api.sug.rocks/cnschedule.json'
-
-    // Fetch our API
-    fetch(scheduleUrl)
-      .then(data => {
-        return data.json()
-      }, err => {
-        console.log(err)
-      })
-      .then(json => {
-        Object.keys(json).map(dayKey => {
-          var day = json[dayKey]
-
-          if (day['source'] === 'Cartoon Network') {
-            Object.keys(day['schedule']).map(scheduleKey => {
-              var el = day['schedule'][scheduleKey]
-              if (el['show'] === 'OK K.O.! Let\'s Be Heroes' && el['timestamp'] > t.currentTS) {
-                t.episodes.push(el)
-              }
-            })
-          }
-        })
-      })
-
-    var premieresUrl = 'https://data.okko.fun/api/latest/premiere-ts.json'
-
-    // Fetch our API
-    fetch(premieresUrl)
-      .then(data => {
-        return data.json()
-      }, err => {
-        console.log(err)
-      })
-      .then(json => {
-        Object.keys(json).map(pKey => {
-          t.premiereTs.push(json[pKey]['ts'])
-        })
-      })
   }
 }
 </script>

@@ -6,7 +6,7 @@
     <transition-group name="fadeUp" tag="div" class="columns is-multiline">
       <div
         class="column is-half"
-        v-for="category in categories"
+        v-for="category in $parent.links_ressources"
         :category="category"
         :key="category.title">
         <div class="card category">
@@ -38,27 +38,6 @@ export default {
   name: 'links',
   metaInfo: {
     title: 'Links & Resources'
-  },
-  data () {
-    return {
-      categories: []
-    }
-  },
-  mounted () {
-    // Shortcut and URL to our API
-    var t = this
-    var apiUrl = 'https://data.okko.fun/api/latest/links.json'
-
-    // Fetch our API
-    fetch(apiUrl)
-      .then(data => {
-        return data.json()
-      }, err => {
-        console.log(err)
-      })
-      .then(json => {
-        t.categories = json
-      })
   }
 }
 </script>

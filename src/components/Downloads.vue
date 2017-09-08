@@ -6,10 +6,19 @@
     </h5>
 
     <transition name="fadeLeft">
-      <div class="notification is-danger" v-if="restricted">
+      <div class="notification is-danger" v-if="$parent.downloads.restricted">
         <strong>Sorry, but we can't show you this page.</strong><br>
         It looks like you're in a country where the show is freely available from legal sources.<br>
         Please use those sources instead of pirating the show. Thanks!
+      </div>
+    </transition>
+
+    <transition name="fadeLeft">
+      <div class="notification is-danger" v-if="$parent.downloads.ext_blocked">
+        <strong>An external ressource couldn't be loaded.</strong><br>
+        Sorry, but we couldn't load an external ressource needed to verify your connexion to our downloads.<br>
+        Please disable your adblocker for this website (promise: we don't have ads)
+        and/or allow <code>https://okko-region.herokuapp.com</code> to load.
       </div>
     </transition>
 
@@ -17,14 +26,13 @@
       <b-tabs
         position="is-centered"
         class="block"
-        v-model="activeTab"
-        v-if="ep.length > 0">
+        v-if="$parent.downloads.ep.length > 0">
         <b-tab-item label="Episodes" icon="television" v-if="ep.length > 0">
-          <div class="box legal-links" v-if="ep_legal !== null">
+          <div class="box legal-links" v-if="$parent.downloads.ep_legal !== null">
             Please consider official and legal links if available.<br>
             <a
               class="button"
-              v-for="t in ep_legal"
+              v-for="t in $parent.downloads.ep_legal"
               :key="t.url"
               :href="t.url">
               <b-icon :icon="t.icon"></b-icon>
@@ -35,7 +43,7 @@
           <div class="dl-entries columns is-multiline is-mobile is-centered">
             <div
               class="dl-entry column is-10"
-              v-for="l in ep"
+              v-for="l in $parent.downloads.ep"
               :key="l.code">
               <span class="dl-title">
                 S{{ l.season.toString() | leftPad(2, '0') }}E{{ l.episode.toString() | leftPad(2, '0') }}:
@@ -83,12 +91,12 @@
           </div>
         </b-tab-item>
 
-        <b-tab-item label="Shorts" icon="video-camera" v-if="sh.length > 0">
-          <div class="box legal-links" v-if="sh_legal !== null">
+        <b-tab-item label="Shorts" icon="video-camera" v-if="$parent.downloads.sh.length > 0">
+          <div class="box legal-links" v-if="$parent.downloads.sh_legal !== null">
             Please consider official and legal links if available.<br>
             <a
               class="button"
-              v-for="t in sh_legal"
+              v-for="t in $parent.downloads.sh_legal"
               :key="t.url"
               :href="t.url">
               <b-icon :icon="t.icon"></b-icon>
@@ -146,12 +154,12 @@
           </div>
         </b-tab-item>
 
-        <b-tab-item label="Comics" icon="book" v-if="co.length > 0">
-          <div class="box legal-links" v-if="co_legal !== null">
+        <b-tab-item label="Comics" icon="book" v-if="$parent.downloads.co.length > 0">
+          <div class="box legal-links" v-if="$parent.downloads.co_legal !== null">
             Please consider official and legal links if available.<br>
             <a
               class="button"
-              v-for="t in co_legal"
+              v-for="t in $parent.downloads.co_legal"
               :key="t.url"
               :href="t.url">
               <b-icon :icon="t.icon"></b-icon>
@@ -199,12 +207,12 @@
           </div>
         </b-tab-item>
 
-        <b-tab-item label="Soundtrack" icon="music" v-if="mu.length > 0">
-          <div class="box legal-links" v-if="mu_legal !== null">
+        <b-tab-item label="Soundtrack" icon="music" v-if="$parent.downloads.mu.length > 0">
+          <div class="box legal-links" v-if="$parent.downloads.mu_legal !== null">
             Please consider official and legal links if available.<br>
             <a
               class="button"
-              v-for="t in mu_legal"
+              v-for="t in $parent.downloads.mu_legal"
               :key="t.url"
               :href="t.url">
               <b-icon :icon="t.icon"></b-icon>
@@ -262,23 +270,10 @@ export default {
   metaInfo: {
     title: 'Downloads'
   },
-  data () {
-    return {
-      ep: [],
-      ep_legal: null,
-      sh: [],
-      sh_legal: null,
-      co: [],
-      co_legal: null,
-      mu: [],
-      mu_legal: null,
-      activeTab: 0,
-      restricted: false
-    }
-  },
   mounted () {
     // Shortcut and URL to our API
     var t = this
+    t.$parent.loading = true
     // var checkCountry = 'https://okko-region.herokuapp.com/json/'
     var apiUrl = 'https://data.okko.fun/api/latest/downloads.json'
 
@@ -341,6 +336,11 @@ export default {
         t.co_legal = json['comics']['legal_links']
         t.mu = json['soundtrack']['list']
         t.mu_legal = json['soundtrack']['legal_links']
+      })
+      .then(() => {
+        setTimeout(() => {
+          t.$parent.loading = false
+        }, 1000)
       })
     /*
         } else {

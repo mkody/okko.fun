@@ -11,11 +11,11 @@
         :open="false"
         :collapsible="true"
         class="column is-10 is-offset-1"
-        v-for="leak in leaks"
+        v-for="leak in $parent.previews"
         :key="leak.id">
         <span slot="header">
           <b>{{ leak.title }}</b>
-          <small><i>({{ getDate(leak.air_date) }})</i></small>
+          <small><i>({{ $parent.getDate(leak.air_date) }})</i></small>
         </span>
         <div class="content">
           <blockquote v-html="leak.desc"></blockquote>
@@ -62,44 +62,8 @@ export default {
   metaInfo: {
     title: 'Previews'
   },
-  data () {
-    return {
-      leaks: []
-    }
-  },
   components: {
     videoPlayer
-  },
-  methods: {
-    getDate: (ts) => {
-      // Get current timestamp and check if current element is on air
-      var dateObj = new Date(ts * 1000)
-      return dateObj.toLocaleString(navigator.language, {weekday: 'long', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'})
-    },
-    open: () => {
-    }
-  },
-  mounted () {
-    // Shortcut and URL to our API
-    var t = this
-    var apiUrl = 'https://api.sug.rocks/all-leaks.json'
-
-    // Fetch our API
-    fetch(apiUrl)
-      .then(data => {
-        return data.json()
-      }, err => {
-        console.log(err)
-      })
-      .then(json => {
-        Object.keys(json).map(leakKey => {
-          var leak = json[leakKey]
-
-          if (leak['show'] === 'OK K.O.! Let\'s Be Heroes') {
-            t.leaks.push(leak)
-          }
-        })
-      })
   }
 }
 </script>
