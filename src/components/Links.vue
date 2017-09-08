@@ -7,6 +7,7 @@
       <div
         class="column is-half"
         v-for="category in $parent.links_ressources"
+        v-if="mnt"
         :category="category"
         :key="category.title">
         <div class="card category">
@@ -38,6 +39,17 @@ export default {
   name: 'links',
   metaInfo: {
     title: 'Links & Resources'
+  },
+  data () {
+    return {
+      mnt: false
+    }
+  },
+  mounted () {
+    var t = this
+    setTimeout(function () {
+      t.mnt = true
+    }, t.$parent.mntDelay)
   }
 }
 </script>

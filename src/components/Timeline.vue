@@ -1,6 +1,7 @@
 <template>
   <transition-group name="fadeUp" tag="div" id="timeline">
     <div class="timeline-item"
+      v-if="mnt"
       v-for="thing in $parent.timeline"
       :key="thing.id"
       :id="'event-' + thing.id">
@@ -23,6 +24,17 @@ export default {
   name: 'timeline',
   metaInfo: {
     title: 'Timeline'
+  },
+  data () {
+    return {
+      mnt: false
+    }
+  },
+  mounted () {
+    var t = this
+    setTimeout(function () {
+      t.mnt = true
+    }, t.$parent.mntDelay)
   }
 }
 </script>

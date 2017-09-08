@@ -11,6 +11,7 @@
         :open="false"
         :collapsible="true"
         class="column is-10 is-offset-1"
+        v-if="mnt"
         v-for="leak in $parent.previews"
         :key="leak.id">
         <span slot="header">
@@ -64,6 +65,17 @@ export default {
   },
   components: {
     videoPlayer
+  },
+  data () {
+    return {
+      mnt: false
+    }
+  },
+  mounted () {
+    var t = this
+    setTimeout(function () {
+      t.mnt = true
+    }, t.$parent.mntDelay)
   }
 }
 </script>

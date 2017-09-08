@@ -9,6 +9,7 @@
 
     <transition-group name="fadeUp" tag="div" class="columns is-multiline is-mobile is-centered">
       <div class="column is-8 card"
+        v-if="mnt"
         v-for="episode in $parent.schedule.episodes"
         :key="episode.timestamp">
         <div class="content">
@@ -40,6 +41,17 @@ export default {
   name: 'schedule',
   metaInfo: {
     title: 'Next TV Airings'
+  },
+  data () {
+    return {
+      mnt: false
+    }
+  },
+  mounted () {
+    var t = this
+    setTimeout(function () {
+      t.mnt = true
+    }, t.$parent.mntDelay)
   }
 }
 </script>

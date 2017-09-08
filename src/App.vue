@@ -31,6 +31,7 @@ export default {
   },
   data () {
     return {
+      mntDelay: 300,
       loading: true,
       currentTs: parseInt(Date.now() / 1000, 10),
       tweets: [],

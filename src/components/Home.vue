@@ -10,7 +10,7 @@
         <br>
 
         <transition name="fadeUp">
-          <div v-if="$parent.schedule.premieres.length > 0">
+          <div v-if="mnt && $parent.schedule.premieres.length > 0">
             <h5 class="subtitle">New New New New on TV</h5>
             <div class="columns is-multiline is-desktop is-centered">
               <div class="column is-12 card"
@@ -29,84 +29,85 @@
         </transition>
       </div>
       <div class="column is-two-thirds-tablet">
-        <h5 class="subtitle">From the official Tumblr</h5>
-
         <transition name="fadeUp">
-          <div class="card" v-if="$parent.tumblr.latest">
-            <div class="card-image">
-              <span v-if="$parent.tumblr.latest.embed">
-                <figure
-                  class="image-center"
-                  v-if="$parent.tumblr.latest.embed.html.startsWith('\n<video ')">
-                  <a target="_blank" :href="$parent.tumblr.latest.url">
-                    <span class="ext">Click here to play this media on Tumblr.</span>
-                    <img :src="$parent.tumblr.latest.embed.thumbnail">
-                  </a>
-                </figure>
-                <figure
-                  class="image-center"
-                  v-else
-                  v-html="$parent.tumblr.latest.embed.html">
-                </figure>
-              </span>
-              <span v-if="$parent.tumblr.latest.photos">
-                <figure
-                  class="image-center">
-                  <img v-img :src="$parent.tumblr.latest.photos[0]">
-                </figure>
-                <div
-                  class="columns is-multiline"
-                  v-if="$parent.tumblr.latest.photos.length > 1">
+          <div v-if="mnt && $parent.tumblr.latest">
+            <h5 class="subtitle">From the official Tumblr</h5>
+            <div class="card">
+              <div class="card-image">
+                <span v-if="$parent.tumblr.latest.embed">
                   <figure
-                    class="column is-one-quarter image-thumbnails"
-                    v-for="(i, j) in $parent.tumblr.latest.photos.slice(1)"
-                    :key="j">
-                    <img v-img :src="i">
+                    class="image-center"
+                    v-if="$parent.tumblr.latest.embed.html.startsWith('\n<video ')">
+                    <a target="_blank" :href="$parent.tumblr.latest.url">
+                      <span class="ext">Click here to play this media on Tumblr.</span>
+                      <img :src="$parent.tumblr.latest.embed.thumbnail">
+                    </a>
                   </figure>
-                </div>
-              </span>
-            </div>
-
-            <div class="card-content">
-              <div class="media">
-                <div class="media-left">
-                  <figure class="image is-48x48">
-                    <img
-                      :src="$parent.tumblr.latest.author.avatar"
-                      :alt="$parent.tumblr.latest.author.name">
+                  <figure
+                    class="image-center"
+                    v-else
+                    v-html="$parent.tumblr.latest.embed.html">
                   </figure>
-                </div>
-                <div class="media-content">
-                  <p class="title is-4">
-                    {{ $parent.tumblr.latest.author.name }}
-                  </p>
-                  <p class="subtitle is-6">
-                    <b-tooltip
-                      label="See original post"
-                      dashed
-                      animated>
-                      <a target="_blank" :href="$parent.tumblr.latest.url">
-                        {{ $parent.getDate($parent.tumblr.latest.timestamp) }}
-                      </a>
-                    </b-tooltip>
-                  </p>
-                </div>
+                </span>
+                <span v-if="$parent.tumblr.latest.photos">
+                  <figure
+                    class="image-center">
+                    <img v-img :src="$parent.tumblr.latest.photos[0]">
+                  </figure>
+                  <div
+                    class="columns is-multiline"
+                    v-if="$parent.tumblr.latest.photos.length > 1">
+                    <figure
+                      class="column is-one-quarter image-thumbnails"
+                      v-for="(i, j) in $parent.tumblr.latest.photos.slice(1)"
+                      :key="j">
+                      <img v-img :src="i">
+                    </figure>
+                  </div>
+                </span>
               </div>
 
-              <div class="content">
-                <div v-html="$parent.tumblr.latest.caption"></div>
-                <small>
-                  <span v-if="$parent.tumblr.latest.tags.length > 0">
-                    <br> Tags:
-                    <a
-                      target="_blank"
-                      v-for="l in $parent.tumblr.latest.tags"
-                      :key="l.name"
-                      :href="l.url">
-                      #{{ l.name }}
-                    </a>
-                  </span>
-                </small>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="image is-48x48">
+                      <img
+                        :src="$parent.tumblr.latest.author.avatar"
+                        :alt="$parent.tumblr.latest.author.name">
+                    </figure>
+                  </div>
+                  <div class="media-content">
+                    <p class="title is-4">
+                      {{ $parent.tumblr.latest.author.name }}
+                    </p>
+                    <p class="subtitle is-6">
+                      <b-tooltip
+                        label="See original post"
+                        dashed
+                        animated>
+                        <a target="_blank" :href="$parent.tumblr.latest.url">
+                          {{ $parent.getDate($parent.tumblr.latest.timestamp) }}
+                        </a>
+                      </b-tooltip>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="content">
+                  <div v-html="$parent.tumblr.latest.caption"></div>
+                  <small>
+                    <span v-if="$parent.tumblr.latest.tags.length > 0">
+                      <br> Tags:
+                      <a
+                        target="_blank"
+                        v-for="l in $parent.tumblr.latest.tags"
+                        :key="l.name"
+                        :href="l.url">
+                        #{{ l.name }}
+                      </a>
+                    </span>
+                  </small>
+                </div>
               </div>
             </div>
           </div>
@@ -115,6 +116,7 @@
         <transition-group name="fadeUp">
           <div
             class="box"
+            v-if="mnt"
             v-for="(p, j) in $parent.tumblr.previous"
             :key="j">
             <article class="media">
@@ -154,6 +156,17 @@ export default {
   name: 'home',
   metaInfo: {
     title: 'Home'
+  },
+  data () {
+    return {
+      mnt: false
+    }
+  },
+  mounted () {
+    var t = this
+    setTimeout(function () {
+      t.mnt = true
+    }, t.$parent.mntDelay)
   }
 }
 </script>
