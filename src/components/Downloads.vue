@@ -27,7 +27,7 @@
         position="is-centered"
         class="block"
         v-if="mnt && $parent.downloads.ep.length > 0">
-        <b-tab-item label="Episodes" icon="television" v-if="ep.length > 0">
+        <b-tab-item label="Episodes" icon="television" v-if="$parent.downloads.ep.length > 0">
           <div class="box legal-links" v-if="$parent.downloads.ep_legal !== null">
             Please consider official and legal links if available.<br>
             <a
@@ -107,7 +107,7 @@
           <div class="dl-entries columns is-multiline">
             <div
               class="dl-entry column is-10 is-offset-1"
-              v-for="l in sh"
+              v-for="l in $parent.downloads.sh"
               :key="l.code">
               <span class="dl-title">
                 <strong>{{ l.title }}</strong>
@@ -170,7 +170,7 @@
           <div class="dl-entries columns is-multiline">
             <div
               class="dl-entry column is-10 is-offset-1"
-              v-for="l in co"
+              v-for="l in $parent.downloads.co"
               :key="l.code">
               <span class="dl-title">
                 <strong>{{ l.title }}</strong>
@@ -223,7 +223,7 @@
           <div class="dl-entries columns is-multiline">
             <div
               class="dl-entry column is-10 is-offset-1"
-              v-for="l in mu"
+              v-for="l in $parent.downloads.mu"
               :key="l.code">
               <span class="dl-title">
                 <strong>{{ l.title }}</strong>
