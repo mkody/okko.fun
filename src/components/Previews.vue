@@ -6,51 +6,60 @@
       <u class="blink">Spoilers!</u>
     </h5>
 
-    <transition-group name="fadeUp" tag="div" class="columns is-multiline">
-      <b-panel
-        :open="false"
-        :collapsible="true"
-        class="column is-10 is-offset-1"
-        v-if="mnt"
-        v-for="leak in $parent.previews"
-        :key="leak.id">
-        <span slot="header">
-          <b>{{ leak.title }}</b>
-          <small><i>({{ $parent.getDate(leak.air_date) }})</i></small>
-        </span>
-        <div class="content">
-          <blockquote v-html="leak.desc"></blockquote>
-          <video-player
-            v-if="leak.videos.length > 0"
-            class="preview-video"
-            ref="videoPlayer"
-            :options="{
-              muted: false,
-              sources: [{
-                type: 'video/mp4',
-                src: leak.videos[0].url
-              }],
-              poster: 'https://proxy.sug.rocks/' + leak.images[0].url,
-              fluid: true
-            }"
-            :playsinline="true">
-          </video-player>
-          <div class="columns is-multiline">
-            <div class="column is-half"
-              v-for="image in leak.images"
-              :key="image.url">
-              <img
-                v-img="{
-                  group: leak.id,
-                  src: 'https://proxy.sug.rocks/' + image.url,
-                  cursor: 'zoom-in'
-                }"
-                :src="'https://proxy.sug.rocks/400x/' + image.url">
+    <transition name="fadeUp">
+      <div
+        class="columns is-multiline"
+        v-if="mnt && $parent.previews.length > 0">
+        <b-panel
+          :open="false"
+          :collapsible="true"
+          class="column is-10 is-offset-1"
+          v-for="leak in $parent.previews"
+          :key="leak.id">
+          <span slot="header">
+            <b>{{ leak.title }}</b>
+            <small><i>({{ $parent.getDate(leak.air_date) }})</i></small>
+          </span>
+          <div class="content">
+            <blockquote v-html="leak.desc"></blockquote>
+            <video-player
+              v-if="leak.videos.length > 0"
+              class="preview-video"
+              ref="videoPlayer"
+              :options="{
+                muted: false,
+                sources: [{
+                  type: 'video/mp4',
+                  src: leak.videos[0].url
+                }],
+                poster: 'https://proxy.sug.rocks/' + leak.images[0].url,
+                fluid: true
+              }"
+              :playsinline="true">
+            </video-player>
+            <div class="columns is-multiline">
+              <div class="column is-half"
+                v-for="image in leak.images"
+                :key="image.url">
+                <img
+                  v-img="{
+                    group: leak.id,
+                    src: 'https://proxy.sug.rocks/' + image.url,
+                    cursor: 'zoom-in'
+                  }"
+                  :src="'https://proxy.sug.rocks/400x/' + image.url">
+              </div>
             </div>
           </div>
-        </div>
-      </b-panel>
-    </transition-group>
+        </b-panel>
+      </div>
+
+      <div
+        class="has-text-centered"
+        v-else-if="mnt">
+        <h5 class="subtitle">Nothing here... yet!</h5>
+      </div>
+    </transition>
   </div>
 </template>
 

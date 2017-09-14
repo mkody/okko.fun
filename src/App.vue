@@ -54,7 +54,18 @@ export default {
         mu: [],
         mu_legal: null,
         restricted: false,
-        ext_blocked: false
+        ext_blocked: false,
+        country: false,
+        whitelist: [
+          'CH',
+          'FR',
+          'DE',
+          'UK',
+          'ES',
+          'MX',
+          'RU',
+          'PT'
+        ]
       },
       links_ressources: [],
       previews: [],
@@ -159,7 +170,8 @@ export default {
           })
           .then(json => {
             console.log(json)
-            if (json['country_code'] !== 'A1' || localStorage.getItem('ImADick') === 'totally') {
+            t.downloads.country = json['country_code']
+            if (t.downloads.country !== 'A1' || localStorage.getItem('ImADick') === 'totally') {
               // Fetch our downloads
               fetch(dlUrl)
                 .then(data => {

@@ -64,6 +64,15 @@
             News
           </router-link>
           -->
+
+          <transition name="fade">
+            <router-link
+              class="navbar-item"
+              to="/downloads"
+              v-if="$parent.downloads.whitelist.indexOf($parent.downloads.country) > -1">
+              Downloads
+            </router-link>
+          </transition>
         </div>
 
         <div class="navbar-end is-hidden-mobile">
