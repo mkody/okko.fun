@@ -6127,9 +6127,9 @@ uuid@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
 
-v-img@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/v-img/-/v-img-0.1.1.tgz#63b52dd05b73d70ee755bd541aa512527388d950"
+v-img@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/v-img/-/v-img-0.1.2.tgz#87aec05d4917cbdd6f2479230b6c71a7b99432bb"
 
 validate-npm-package-license@^3.0.1:
   version "3.0.1"
