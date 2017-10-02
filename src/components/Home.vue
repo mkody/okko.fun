@@ -67,7 +67,7 @@
                       :src="'https://proxy.sug.rocks/x500/' + $parent.tumblr.latest.photos[0]">
                   </figure>
                   <div
-                    class="columns is-multiline is-mobile"
+                    class="columns is-multiline is-mobile is-centered"
                     v-if="$parent.tumblr.latest.photos.length > 1">
                     <figure
                       class="column is-one-quarter-tablet is-one-third-mobile image-thumbnails"

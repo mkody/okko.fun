@@ -8,50 +8,52 @@
 
     <transition name="fadeUp">
       <div
-        class="columns is-multiline"
+        class="columns is-multiline is-centered"
         v-if="mnt && $parent.previews.length > 0">
-        <b-panel
+        <b-collapse
           :open="false"
-          :collapsible="true"
-          class="column is-10 is-offset-1"
+          :animation="false"
+          class="panel column is-10"
           v-for="leak in $parent.previews"
           :key="leak.id">
-          <span slot="header">
+          <div slot="trigger" class="panel-heading">
             <b>{{ leak.title }}</b>
             <small><i>({{ $parent.getDate(leak.air_date) }})</i></small>
-          </span>
-          <div class="content">
-            <blockquote v-html="leak.desc"></blockquote>
-            <video-player
-              v-if="leak.videos.length > 0"
-              class="preview-video"
-              ref="videoPlayer"
-              :options="{
-                muted: false,
-                sources: [{
-                  type: 'video/mp4',
-                  src: leak.videos[0].url
-                }],
-                poster: 'https://proxy.sug.rocks/' + leak.images[0].url,
-                fluid: true
-              }"
-              :playsinline="true">
-            </video-player>
-            <div class="columns is-multiline">
-              <div class="column is-half"
-                v-for="image in leak.images"
-                :key="image.url">
-                <img
-                  v-img="{
-                    group: leak.id,
-                    src: 'https://proxy.sug.rocks/' + image.url,
-                    cursor: 'zoom-in'
-                  }"
-                  :src="'https://proxy.sug.rocks/400x/' + image.url">
+          </div>
+          <div class="panel-block">
+            <div class="content">
+              <blockquote v-html="leak.desc"></blockquote>
+              <video-player
+                v-if="leak.videos.length > 0"
+                class="preview-video"
+                ref="videoPlayer"
+                :options="{
+                  muted: false,
+                  sources: [{
+                    type: 'video/mp4',
+                    src: leak.videos[0].url
+                  }],
+                  poster: 'https://proxy.sug.rocks/' + leak.images[0].url,
+                  fluid: true
+                }"
+                :playsinline="true">
+              </video-player>
+              <div class="columns is-multiline has-text-centered">
+                <div class="column is-half"
+                  v-for="image in leak.images"
+                  :key="image.url">
+                  <img
+                    v-img="{
+                      group: leak.id,
+                      src: 'https://proxy.sug.rocks/' + image.url,
+                      cursor: 'zoom-in'
+                    }"
+                    :src="'https://proxy.sug.rocks/400x/' + image.url">
+                </div>
               </div>
             </div>
           </div>
-        </b-panel>
+        </b-collapse>
       </div>
 
       <div
