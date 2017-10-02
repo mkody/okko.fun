@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Cool, basic stuff -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>OK K.O.! Fansite</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A fansite for OK K.O.! Let's Be Heroes">
+    <meta name="author" content="CTOON">
+    <meta name="robots" content="nofollow">
 
+    <title>OKKO.fun</title>
+
+    <!-- Verification stuff -->
+    <meta name="google-site-verification" content="Spx1iga7tn8nrcaqbLh7RnekjcXBKvtplgswT9rONa8" />
+    <meta name="flattr:id" content="22jl5v">
+
+    <!-- Twitter hell -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@OKKOfun">
+    <meta name="twitter:title" content="OKKO.fun" data-vue-meta="true">
+    <meta name="twitter:description" content="A fansite for OK K.O.! Let's Be Heroes">
+    <meta name="twitter:image" content="https://okko.fun/static/img/icons/apple-touch-icon.png">
+    <meta name="twitter:image:alt" content="OKKO.fun">
+
+    <!-- Open Graph hell -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="OKKO.fun">
+    <meta property="og:title" content="OKKO.fun" data-vue-meta="true">
+    <meta property="og:description" content="A fansite for OK K.O.! Let's Be Heroes">
+    <meta property="og:url" content="https://okko.fun/" data-vue-meta="true">
+    <meta property="og:image" content="https://okko.fun/static/img/icons/apple-touch-icon.png">
+
+    <!-- App hell -->
     <link rel="apple-touch-icon" sizes="180x180" href="/static/img/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/img/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/img/icons/favicon-16x16.png">
     <link rel="manifest" href="/static/manifest.json">
     <link rel="mask-icon" href="/static/img/icons/safari-pinned-tab.svg" color="#35465d">
-    <link rel="shortcut icon" href="/static/img/icons/favicon.ico">
-    <meta name="apple-mobile-web-app-title" content="OK K.O.!">
-    <meta name="application-name" content="OK K.O.!">
+    <meta name="apple-mobile-web-app-title" content="OKKO.fun">
+    <meta name="application-name" content="OKKO.fun">
     <meta name="msapplication-config" content="/static/browserconfig.xml">
     <meta name="theme-color" content="#35465d">
-    <meta name="google-site-verification" content="Spx1iga7tn8nrcaqbLh7RnekjcXBKvtplgswT9rONa8" />
-    <meta name="flattr:id" content="22jl5v">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <% for (var chunk of webpack.chunks) {
@@ -26,12 +49,14 @@
     <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
   </head>
   <body>
-    <div style="text-align: center; font-weight: bold;">
+    <div id="jserror" style="text-align: center; font-weight: bold;">
       <noscript>
         Please enable javascript or some elements will be broken!
       </noscript>
     </div>
+
     <div id="app"></div>
+
     <%= htmlWebpackPlugin.options.serviceWorkerLoader %>
   </body>
 </html>

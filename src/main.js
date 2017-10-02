@@ -1,3 +1,4 @@
+/* globals VERSION COMMITHASH BRANCH */
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
@@ -19,7 +20,40 @@ import MainFooter from '@/components/MainFooter'
 import MainHeader from '@/components/MainHeader'
 import PageNotReady from '@/components/PageNotReady'
 
+// Test if the browser doesn't support console and localStorage
+if (typeof console === 'undefined' || typeof localStorage === 'undefined') {
+  var errorMsgUnsupported = '<h1>OKKO.fun</h1>'
+  errorMsgUnsupported += '<b>You\'re currently using an unsupported browser</b>.<br>'
+  errorMsgUnsupported += 'Please upgrade to the latest version of Chrome, Opera, Brave, Firefox, Microsoft Edge or Safari to continue.<br>'
+  errorMsgUnsupported += '<a href="https://whatbrowser.org/">More details on having a good and updated browser here.</a>'
+
+  document.getElementById('jserror').innerHTML = errorMsgUnsupported
+  throw new Error('Unsupported browser')
+}
+
+// Test if we can write things to localStorage (IE's "Access Denied" / iOS Private Browsing)
+try {
+  window.localStorage.setItem('OK K.O.!', 'Let\'s Be Heroes!')
+} catch (error) {
+  var errorMsgLS = '<h1>OKKO.fun</h1>'
+  errorMsgLS += '<b>This app doesn\'t work with your current browser state.</b><br>'
+  errorMsgLS += 'iOS users: Private browsing mode breaks the saving/loading feature of the app. Please go to normal mode.<br>'
+  errorMsgLS += 'Internet Explorer users: Your browser doesn\'t allow this website to save local content.'
+  errorMsgLS += 'This might be a security measure from your computer or your company.'
+  errorMsgLS += 'If you can, add this website to the thrusted sites list or temporarly use an another browser.'
+
+  document.getElementById('jserror').innerHTML = errorMsgLS
+  throw new Error('Can\'t write to localStorage')
+}
+
+// Stop posting tips
 Vue.config.productionTip = false
+
+// Load components
+Vue.component('main-footer', MainFooter)
+Vue.component('main-header', MainHeader)
+Vue.component('page-not-ready', PageNotReady)
+
 // Enable plugins
 Raven
   .config('https://2bb55e55d64d47a39812ef0c33533c17@sentry.io/213579', {
@@ -42,11 +76,6 @@ Vue.use(VueAnalytics, {
   id: 'UA-103935709-3',
   router
 })
-
-// Load components
-Vue.component('main-footer', MainFooter)
-Vue.component('main-header', MainHeader)
-Vue.component('page-not-ready', PageNotReady)
 
 // Say hi to whoever opens the console
 console.log(
