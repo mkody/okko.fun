@@ -1,5 +1,5 @@
 <template>
-  <div id="main-header">
+  <header>
     <nav class="navbar">
       <div class="navbar-brand">
         <router-link class="navbar-item is-home" to="/">
@@ -10,14 +10,14 @@
           <b-icon icon="twitter"></b-icon>
         </a>
 
-        <div class="navbar-burger burger" data-target="navMenuHeader">
+        <div class="navbar-burger burger" @click="toggleBurger" :class="{'is-active': burgerOpen}">
           <span></span>
           <span></span>
           <span></span>
         </div>
       </div>
 
-      <div id="navMenuHeader" class="navbar-menu">
+      <div @click="closeBurger" :class="{'navbar-menu': true, 'is-active': burgerOpen}">
         <div class="navbar-start">
           <router-link class="navbar-item" to="/schedule">
             Schedule
@@ -81,9 +81,6 @@
               <p class="control">
                 <a class="button is-info" href="https://twitter.com/okkofun" target="_blank">
                   <b-icon icon="twitter"></b-icon>
-                  <span>
-                    Twitter
-                  </span>
                 </a>
               </p>
             </div>
@@ -92,42 +89,32 @@
       </div>
     </nav>
 
-    <header>
-      <div class="container">
-        <h1 class="title">
-          <img src="../assets/OK_KO.png" alt="OK K.O.! - Let's be heroes">
-        </h1>
-        <h2 class="subtitle">Fansite</h2>
-      </div>
-    </header>
-  </div>
+    <div class="container">
+      <h1 class="title">
+        <img src="../assets/OK_KO.png" alt="OK K.O.! - Let's be heroes">
+      </h1>
+      <h2 class="subtitle">Fansite</h2>
+    </div>
+  </header>
 </template>
 
 <script>
 export default {
-  name: 'main-header'
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  // Get all "navbar-burger" elements
-  var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0)
-
-  // Check if there are any nav burgers
-  if ($navbarBurgers.length > 0) {
-    // Add a click event on each of them
-    $navbarBurgers.forEach(function ($el) {
-      $el.addEventListener('click', function () {
-        // Get the target from the "data-target" attribute
-        var target = $el.dataset.target
-        var $target = document.getElementById(target)
-
-        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
-        $el.classList.toggle('is-active')
-        $target.classList.toggle('is-active')
-      })
-    })
+  name: 'main-header',
+  data () {
+    return {
+      burgerOpen: false
+    }
+  },
+  methods: {
+    toggleBurger: function () {
+      this.burgerOpen = !this.burgerOpen
+    },
+    closeBurger: function () {
+      this.burgerOpen = false
+    }
   }
-})
+}
 </script>
 
 <style lang="scss">

@@ -1,0 +1,5 @@
+rules:
+  nesting-depth: 0
+  force-attribute-nesting: 0
+  force-element-nesting: 0
+  force-pseudo-nesting: 0

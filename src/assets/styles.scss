@@ -1,24 +1,38 @@
 $highlight-color: #7957d5;
 
-.navbar-item,
-.navbar-link {
-  &.router-link-active {
-    &:not(.is-home) {
-      color: $highlight-color;
-    }
-  }
-}
-
-.is-underline {
-  text-decoration: underline;
-}
-
 small {
   font-size: .7em;
 }
 
-.blink {
-  animation: blinker 3s linear infinite;
+nav {
+  text-align: left;
+
+  .navbar-item,
+  .navbar-link {
+    &.router-link-active:not(.is-home) {
+      color: $highlight-color;
+    }
+
+    &.router-link-exact-active {
+      color: $highlight-color;
+    }
+}
+}
+
+main {
+  min-height: calc(100vh - 250px);
+
+  .full-width {
+    width: 100%;
+  }
+
+  .is-underline {
+    text-decoration: underline;
+  }
+
+  .blink {
+    animation: blinker 3s linear infinite;
+  }
 }
 
 @keyframes blinker {

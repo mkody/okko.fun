@@ -1,7 +1,6 @@
 <template>
-  <transition-group name="fadeUp" tag="div" id="timeline">
+  <transition-group v-if="mnt" name="fadeUp" tag="div" id="timeline" class="timeline">
     <div class="timeline-item"
-      v-if="mnt"
       v-for="thing in $parent.timeline"
       :key="thing.id"
       :id="'event-' + thing.id">

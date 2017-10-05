@@ -2,7 +2,7 @@
   <div id="app">
     <main-header></main-header>
 
-    <section class="section">
+    <main class="section">
       <div class="container is-widescreen">
         <transition
           name="fade"
@@ -11,7 +11,7 @@
           <router-view></router-view>
         </transition>
       </div>
-    </section>
+    </main>
 
     <main-footer></main-footer>
     <b-loading :active.sync="loading" :canCancel="true"></b-loading>
@@ -191,8 +191,10 @@ export default {
                       console.error('Something broke when getting downloads bro.\n' + json['error']['message'])
                       t.downloads.ext_blocked = true
                     }
+
                     return
                   }
+
                   t.downloads.ep = json['episodes']['list']
                   t.downloads.ep_legal = json['episodes']['legal_links']
                   t.downloads.sh = json['shorts']['list']
@@ -203,8 +205,8 @@ export default {
                   t.downloads.mu_legal = json['soundtrack']['legal_links']
                 })
             } else {
-              t.restricted = true
               localStorage.setItem('awesome', 'yes')
+              t.restricted = true
             }
           })
       })
@@ -220,8 +222,4 @@ export default {
 
 <style lang="scss">
 @import './assets/styles';
-
-#app > .section > .container {
-  min-height: calc(100vh - 250px);
-}
 </style>

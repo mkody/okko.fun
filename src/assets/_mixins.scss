@@ -1,10 +1,11 @@
 // Mixins and Placeholders
 %clearfix {
-  &:after, &:before {
+  &::after,
+  &::before {
+    clear: both;
     content: '';
     display: block;
     width: 100%;
-    clear: both;
   }
 }
 

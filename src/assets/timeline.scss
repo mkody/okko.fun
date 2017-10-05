@@ -1,87 +1,88 @@
 // Mixins
-@import "mixins";
+@import 'mixins';
+$white: #fff;
 
-// Timeline 
+// Timeline
 // https://github.com/itbruno/responsive-timeline
-*, *:before, *:after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
 }
 
-#timeline {
-  &:before {
-    content:"";
-    width: 3px;
-    height: 100%;
+.timeline {
+  &::before {
     background: $timeline-color;
+    content: '';
+    height: 100%;
     left: 50%;
-    top: 0;
     position: absolute;
+    top: 0;
+    width: 3px;
   }
 
-  &:after {
-    content: "";
+  &::after {
     clear: both;
+    content: '';
     display: table;
     width: 100%;
   }
-  
+
   .timeline-item {
+    @extend %clearfix;
     margin-bottom: 50px;
     position: relative;
-    @extend %clearfix;
 
     .timeline-icon {
+      @include prefix(border-radius, 50%);
       background: $timeline-color;
-      width: 50px;
       height: 50px;
+      left: 50%;
+      margin-left: -23px;
+      overflow: hidden;
       position: absolute;
       top: 0;
-      left: 50%;
-      overflow: hidden;
-      margin-left: -23px;
-      @include prefix(border-radius, 50%);
+      width: 50px;
 
       .icon {
-        color: white;
+        color: $white;
+        left: 14px;
         position: relative;
         top: 12px;
-        left: 14px;
       }
     }
 
     .timeline-content {
-      width: 45%;
-      background: #fff;
-      padding: 20px;
-      @include prefix(box-shadow, 0 3px 0 1px rgba(0,0,0,0.1));
+      @include prefix(box-shadow, 0 3px 0 1px rgba(0, 0, 0, .1));
       @include prefix(border-radius, 5px);
       @include prefix(transition, all .3s ease);
+      background: $white;
+      padding: 20px;
+      width: 45%;
 
       h2 {
-        padding: 15px;
-        background: $timeline-color;
-        color: #fff;
-        margin: -20px -20px 0 -20px;
-        font-weight: 500;
         @include prefix(border-radius, 3px 3px 0 0);
+        background: $timeline-color;
+        color: $white;
+        font-weight: 500;
+        margin: -20px -20px 0;
+        padding: 15px;
       }
 
       h3 {
-        margin: 10px 0 !important;
+        margin: 10px 0;
       }
 
-      &:before {
-        content: '';
-        position: absolute;
-        left: 45%;
-        top: 20px;
-        width: 0; 
-        height: 0; 
+      &::before {
+        border-bottom: 7px solid transparent;
+        border-left: 7px solid $timeline-color;
         border-top: 7px solid transparent;
-        border-bottom: 7px solid transparent; 
-        border-left:7px solid $timeline-color; 
+        content: '';
+        height: 0;
+        left: 45%;
+        position: absolute;
+        top: 20px;
+        width: 0;
       }
     }
 
@@ -89,12 +90,12 @@
       .timeline-content {
         float: right;
 
-        &:before {
-          content: '';
-          right: 45%;
-          left: inherit;
+        &::before {
           border-left: 0;
           border-right: 7px solid $timeline-color;
+          content: '';
+          left: inherit;
+          right: 45%;
         }
       }
     }
@@ -102,23 +103,25 @@
 }
 
 @media screen and (max-width: 768px) {
-  #timeline {
+  .timeline {
     margin: 30px;
     padding: 0;
-    &:before {
-      left: 0;
+
+    &::before {
+      left: 30px;
     }
-    
-    .timeline-item {
+
+    .timeline-item,
+    .timeline-item:nth-child(even) {
       .timeline-content {
-        width: 90%;
         float: right;
-        
-        &:before, &.right:before {
-          left: 10%;
-          margin-left: -6px;
+        width: 90%;
+
+        &::before {
           border-left: 0;
           border-right: 7px solid $timeline-color;
+          left: 10%;
+          margin-left: -6px;
         }
       }
 

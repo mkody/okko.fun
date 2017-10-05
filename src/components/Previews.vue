@@ -1,12 +1,12 @@
 <template>
   <div id="previews">
-    <h3 class="title">Previews <small>(or "leaks")</small></h3>
+    <h3 class="title">Previews</h3>
     <h5 class="subtitle">
-      Two minutes previews and some random screenshots.<br>
-      <u class="blink">Spoilers!</u><br>
+      Two minutes sneak peaks and some random screenshots.<br>
+      <span class="blink is-underline">Spoilers!</span><br>
       <small>
         Note: Data is automatically fetched from Cartoon Network's servers every ~2 hours.<br>
-        Incorrect screenshots or titles/dates will be fixed after-hand by us since it happens regularly.
+        Incorrect screenshots or titles/dates might be fixed after-hand by us if needed.
       </small>
     </h5>
 
@@ -16,7 +16,7 @@
         v-if="mnt && $parent.previews.length > 0">
         <b-collapse
           :open="false"
-          :animation="false"
+          animation="none"
           class="panel column is-10"
           v-for="leak in $parent.previews"
           :key="leak.id">
@@ -25,7 +25,7 @@
             <small><i>({{ $parent.getDate(leak.air_date) }})</i></small>
           </div>
           <div class="panel-block">
-            <div class="content">
+            <div class="content full-width">
               <blockquote v-html="leak.desc"></blockquote>
               <video-player
                 v-if="leak.videos.length > 0"
