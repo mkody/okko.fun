@@ -7,6 +7,7 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var SitemapPlugin = require('sitemap-webpack-plugin').default
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
@@ -17,6 +18,19 @@ var GitRevisionPlugin = require('git-revision-webpack-plugin')
 var gitRevisionPlugin = new GitRevisionPlugin()
 
 var env = config.build.env
+var mainPaths = [
+  '/',
+  '/about',
+  '/about/show',
+  '/about/timeline',
+  '/about/staff',
+  '/about/here',
+  '/downloads',
+  '/links',
+  '/news',
+  '/previews',
+  '/schedule'
+]
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -62,6 +76,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: config.build.index,
       template: 'index.html',
+      favicon: 'favicon.ico',
       inject: true,
       minify: {
         removeComments: true,
@@ -101,6 +116,10 @@ var webpackConfig = merge(baseWebpackConfig, {
         from: path.resolve(__dirname, '../static'),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
+      },
+      {
+        // redirects config for netlify
+        from: path.resolve(__dirname, '../_redirects')
       }
     ]),
     // service worker caching
@@ -111,24 +130,18 @@ var webpackConfig = merge(baseWebpackConfig, {
       minify: true,
       stripPrefix: 'dist/'
     }),
+    // pre-render pages
     new PrerenderSpaPlugin(
       // Absolute path to compiled SPA
       path.join(__dirname, '../dist'),
       // List of routes to prerender
-      [
-        '/',
-        '/about',
-        '/about/show',
-        '/about/timeline',
-        '/about/staff',
-        '/about/here',
-        '/downloads',
-        '/links',
-        '/news',
-        '/previews',
-        '/schedule'
-      ]
-    )
+      mainPaths,
+      {
+        ignoreJSErrors: true
+      }
+    ),
+    // generate a sitemap
+    new SitemapPlugin('https://okko.fun', mainPaths)
   ]
 })
 

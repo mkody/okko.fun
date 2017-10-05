@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
-    "build": "node build/build.js && cp _redirects favicon.ico dist/",
+    "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
@@ -15,6 +15,7 @@
     "raven-js": "^3.18.1",
     "sass": "^1.0.0-beta.2",
     "sass-loader": "^6.0.6",
+    "sitemap-webpack-plugin": "^0.5.1",
     "v-img": "^0.1.2",
     "vue": "^2.4.4",
     "vue-analytics": "^5.1.1",

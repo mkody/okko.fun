@@ -55,17 +55,20 @@ Vue.component('main-header', MainHeader)
 Vue.component('page-not-ready', PageNotReady)
 
 // Enable plugins
-Raven
-  .config('https://2bb55e55d64d47a39812ef0c33533c17@sentry.io/213579', {
-    release: VERSION,
-    tags: {
-      git_commit: COMMITHASH,
-      git_branch: BRANCH
-    },
-    environment: process.env
-  })
-  .addPlugin(RavenVue, Vue)
-  .install()
+if (!window.navigator.userAgent.indexOf('PhantomJS') > -1) {
+  // Don't enable Raven on PhantomJS
+  Raven
+    .config('https://2bb55e55d64d47a39812ef0c33533c17@sentry.io/213579', {
+      release: VERSION,
+      tags: {
+        git_commit: COMMITHASH,
+        git_branch: BRANCH
+      },
+      environment: process.env
+    })
+    .addPlugin(RavenVue, Vue)
+    .install()
+}
 Vue.use(Buefy, {
   defaultIconPack: 'fa',
   defaultTooltipAnimated: true

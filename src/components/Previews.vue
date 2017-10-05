@@ -3,7 +3,11 @@
     <h3 class="title">Previews <small>(or "leaks")</small></h3>
     <h5 class="subtitle">
       Two minutes previews and some random screenshots.<br>
-      <u class="blink">Spoilers!</u>
+      <u class="blink">Spoilers!</u><br>
+      <small>
+        Note: Data is automatically fetched from Cartoon Network's servers every ~2 hours.<br>
+        Incorrect screenshots or titles/dates will be fixed after-hand by us since it happens regularly.
+      </small>
     </h5>
 
     <transition name="fadeUp">

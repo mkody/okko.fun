@@ -1,15 +1,10 @@
 <template>
   <div id="app">
-    <transition
-      appear
-      name="fadeDown">
-      <main-header></main-header>
-    </transition>
+    <main-header></main-header>
 
     <section class="section">
       <div class="container is-widescreen">
         <transition
-          appear
           name="fade"
           leave-active-class="fadeOutLeft"
           mode="out-in">
@@ -83,6 +78,12 @@ export default {
     // Shortcut and URL to our API
     var t = this
     var allUrl = 'https://data.okko.fun/api/latest/all.json'
+
+    if (window.navigator.userAgent.indexOf('PhantomJS') > -1) {
+      // Dont' go fetch data if we're using PhantomJS
+      t.loading = false
+      return
+    }
 
     // Fetch our API
     fetch(allUrl)
@@ -169,7 +170,6 @@ export default {
             t.downloads.ext_blocked = true
           })
           .then(json => {
-            console.log(json)
             t.downloads.country = json['country_code']
             if (t.downloads.country !== 'A1' || localStorage.getItem('ImADick') === 'totally') {
               // Fetch our downloads
@@ -209,7 +209,10 @@ export default {
           })
       })
       .then(() => {
-        t.loading = false
+        // Close loading
+        setTimeout(function () {
+          t.loading = false
+        }, 500)
       })
   }
 }
