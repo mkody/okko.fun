@@ -116,10 +116,6 @@ var webpackConfig = merge(baseWebpackConfig, {
         from: path.resolve(__dirname, '../static'),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
-      },
-      {
-        // redirects config for netlify
-        from: path.resolve(__dirname, '../_redirects')
       }
     ]),
     // service worker caching
