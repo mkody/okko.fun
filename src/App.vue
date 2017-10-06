@@ -79,12 +79,6 @@ export default {
     var t = this
     var allUrl = 'https://data.okko.fun/api/latest/all.json'
 
-    if (window.navigator.userAgent.indexOf('PhantomJS') > -1) {
-      // Dont' go fetch data if we're using PhantomJS
-      t.loading = false
-      return
-    }
-
     // Fetch our API
     fetch(allUrl)
       .then(data => {
