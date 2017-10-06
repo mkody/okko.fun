@@ -124,7 +124,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     ]),
     // service worker caching
     new SWPrecacheWebpackPlugin({
-      cacheId: 'my-vue-app',
+      cacheId: 'okko-fun',
       filename: 'service-worker.js',
       staticFileGlobs: ['dist/**/*.{js,html,css}'],
       minify: true,
@@ -137,7 +137,8 @@ var webpackConfig = merge(baseWebpackConfig, {
       // List of routes to prerender
       mainPaths,
       {
-        ignoreJSErrors: true
+        navigationLocked: true,
+        phantomOptions: '--disk-cache=true'
       }
     ),
     // generate a sitemap
