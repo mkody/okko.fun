@@ -1,6 +1,6 @@
 # OKKO.fun
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-green.svg)](http://standardjs.com/)
-[![build status](https://gitlab.com/okko.fun/website/badges/master/build.svg)](https://gitlab.com/okko.fun/website/commits/master)
+[![build status](https://git.ctoon.network/ctoon/okko/badges/master/build.svg)](https://git.ctoon.network/ctoon/okko/commits/master)
 
 > Let's Be Heroes!
 
@@ -8,7 +8,7 @@
 ## Build Setup
 
 ``` bash
-git clone https://gitgud.io/okko/website.git
+git clone http://git.ctoon.network/ctoon/okko/website.git
 yarn
 npm run build
 ```
