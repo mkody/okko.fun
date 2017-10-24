@@ -73,7 +73,9 @@ Vue.use(Buefy, {
   defaultIconPack: 'fa',
   defaultTooltipAnimated: true
 })
-Vue.use(VueImg)
+Vue.use(VueImg, {
+  sourceButton: true
+})
 Vue.use(VueFilter)
 Vue.use(VueAnalytics, {
   id: 'UA-103935709-3',
