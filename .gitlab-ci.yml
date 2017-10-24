@@ -6,6 +6,7 @@ lint:
   image: node:latest
   stage: test
   cache:
+    key: "v1-$CI_COMMIT_REF_NAME"
     paths:
       - node_modules/
       - .yarn/
@@ -18,8 +19,10 @@ build:
   image: node:latest
   stage: build
   cache:
+    key: "v1-$CI_COMMIT_REF_NAME"
     paths:
       - node_modules/
+    policy: pull
   script:
     - npm run build
   artifacts:
