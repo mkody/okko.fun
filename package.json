@@ -17,7 +17,7 @@
     "sass-loader": "^6.0.6",
     "sitemap-webpack-plugin": "^0.5.1",
     "v-img": "^0.1.9",
-    "vue": "^2.5.2",
+    "vue": "^2.5.3",
     "vue-analytics": "^5.3.0",
     "vue-filter": "^0.2.1",
     "vue-meta": "^1.2.0",
