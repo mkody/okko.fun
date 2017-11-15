@@ -6288,9 +6288,9 @@ vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
 
-vue-video-player@^4.0.4:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/vue-video-player/-/vue-video-player-4.0.4.tgz#026f8360f5c0b9555b91f5901368408c1defbc76"
+vue-video-player@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/vue-video-player/-/vue-video-player-4.0.6.tgz#c95debaacb8fc8633e73295030cc70da7dd5c597"
   dependencies:
     video.js "^6.2.4"
 
