@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "buefy": "^0.6.1",
-    "raven-js": "^3.19.1",
+    "raven-js": "^3.20.0",
     "sass": "^1.0.0-beta.2",
     "sass-loader": "^6.0.6",
     "sitemap-webpack-plugin": "^0.5.1",
