@@ -5,8 +5,8 @@
       Two minutes sneak peaks and some random screenshots.<br>
       <span class="blink is-underline">Spoilers!</span><br>
       <small>
-        Note: Data is automatically fetched from Cartoon Network's servers every ~2 hours.<br>
-        Incorrect screenshots or titles/dates might be fixed after-hand by us if needed.
+        Note: Data is automatically fetched from Cartoon Network's servers.<br>
+        More on <a target="_blank" href="https://previews.ctoon.network">previews.ctoon.network</a>.
       </small>
     </h5>
 
@@ -22,11 +22,11 @@
           :key="leak.id">
           <div slot="trigger" class="panel-heading">
             <b>{{ leak.title }}</b>
-            <small><i>({{ $parent.getDate(leak.air_date) }})</i></small>
+            <small v-if="leak.airdate"><i>({{ $parent.getDate(leak.airdate) }})</i></small>
           </div>
           <div class="panel-block">
             <div class="content full-width">
-              <blockquote v-html="leak.desc"></blockquote>
+              <blockquote v-html="leak.description"></blockquote>
               <video-player
                 v-if="leak.videos.length > 0"
                 class="preview-video"
@@ -35,9 +35,9 @@
                   muted: false,
                   sources: [{
                     type: 'video/mp4',
-                    src: leak.videos[0].url
+                    src: leak.videos[0]
                   }],
-                  poster: 'https://proxy.sug.rocks/' + leak.images[0].url,
+                  poster: 'https://proxy.sug.rocks/' + leak.images[0],
                   fluid: true
                 }"
                 :playsinline="true">
@@ -45,14 +45,14 @@
               <div class="columns is-multiline has-text-centered">
                 <div class="column is-half"
                   v-for="image in leak.images"
-                  :key="image.url">
+                  :key="image">
                   <img
                     v-img="{
                       group: leak.id,
-                      src: 'https://proxy.sug.rocks/' + image.url,
+                      src: image,
                       cursor: 'zoom-in'
                     }"
-                    :src="'https://proxy.sug.rocks/400x/' + image.url">
+                    :src="'https://proxy.sug.rocks/400x/' + image">
                 </div>
               </div>
             </div>
@@ -63,7 +63,10 @@
       <div
         class="has-text-centered"
         v-else-if="mnt">
-        <h5 class="subtitle">Nothing here... yet!</h5>
+        <h5 class="subtitle">
+          No data found, check
+          <a target="_blank" href="https://previews.ctoon.network">CN Previews.</a>
+        </h5>
       </div>
     </transition>
   </div>

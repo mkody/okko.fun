@@ -24,7 +24,7 @@
           </router-link>
 
           <router-link class="navbar-item" to="/previews">
-            Previews (Leaks)
+            Previews
           </router-link>
 
           <div class="navbar-item has-dropdown is-hoverable">

@@ -136,7 +136,7 @@ export default {
           })
 
         // Get the previews
-        var prevUrl = 'https://api.sug.rocks/all-leaks.json'
+        var prevUrl = 'https://be-lb.ctoon.network/shows/2'
         fetch(prevUrl)
           .then(data => {
             return data.json()
@@ -144,12 +144,7 @@ export default {
             console.log(err)
           })
           .then(json => {
-            Object.keys(json).map(prevKey => {
-              var prev = json[prevKey]
-              if (prev['show'] === 'OK K.O.! Let\'s Be Heroes') {
-                t.previews.push(prev)
-              }
-            })
+            t.previews = json
           })
 
         // Get the downloads
