@@ -11,7 +11,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "buefy": "^0.6.1",
+    "buefy": "^0.6.2",
     "raven-js": "^3.20.1",
     "sass": "^1.0.0-beta.2",
     "sass-loader": "^6.0.6",
