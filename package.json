@@ -18,7 +18,7 @@
     "sitemap-webpack-plugin": "^0.5.1",
     "v-img": "^0.1.9",
     "vue": "^2.5.13",
-    "vue-analytics": "^5.7.1",
+    "vue-analytics": "^5.8.0",
     "vue-filter": "^0.2.3",
     "vue-meta": "^1.4.0",
     "vue-router": "^3.0.1",
