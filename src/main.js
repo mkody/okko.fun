@@ -74,7 +74,8 @@ Vue.use(Buefy, {
   defaultTooltipAnimated: true
 })
 Vue.use(VueImg, {
-  sourceButton: true
+  sourceButton: true,
+  thumbnails: true
 })
 Vue.use(VueFilter)
 Vue.use(VueAnalytics, {
