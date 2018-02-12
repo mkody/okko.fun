@@ -20,7 +20,7 @@
     "vue": "^2.5.13",
     "vue-analytics": "^5.8.0",
     "vue-filter": "^0.2.4",
-    "vue-meta": "^1.4.2",
+    "vue-meta": "^1.4.3",
     "vue-router": "^3.0.1",
     "vue-video-player": "^5.0.2",
     "vue2-animate": "^1.0.4",
