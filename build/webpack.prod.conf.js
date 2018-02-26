@@ -33,6 +33,13 @@ var mainPaths = [
 ]
 
 var webpackConfig = merge(baseWebpackConfig, {
+  mode: 'production',
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    },
+    minimize: true
+  },
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
@@ -52,12 +59,6 @@ var webpackConfig = merge(baseWebpackConfig, {
       'COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
       'BRANCH': JSON.stringify(gitRevisionPlugin.branch()),
       'process.env': env
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      sourceMap: true
     }),
     // extract css into its own file
     new ExtractTextPlugin({
@@ -90,26 +91,6 @@ var webpackConfig = merge(baseWebpackConfig, {
       serviceWorkerLoader: `<script>${fs.readFileSync(path.join(__dirname,
         './service-worker-prod.js'), 'utf-8')}</script>`
     }),
-    // split vendor js into its own file
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: function (module, count) {
-        // any required modules inside node_modules are extracted to vendor
-        return (
-          module.resource &&
-          /\.js$/.test(module.resource) &&
-          module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
-          ) === 0
-        )
-      }
-    }),
-    // extract webpack runtime and module manifest to its own file in order to
-    // prevent vendor hash from being updated whenever app bundle is updated
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
-      chunks: ['vendor']
-    }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {
@@ -136,9 +117,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         navigationLocked: true,
         phantomOptions: '--disk-cache=true'
       }
-    ),
-    // generate a sitemap
-    new SitemapPlugin('https://okko.fun', mainPaths)
+    )
   ]
 })
 

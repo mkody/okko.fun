@@ -2612,14 +2612,14 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-extract-text-webpack-plugin@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/extract-text-webpack-plugin/-/extract-text-webpack-plugin-3.0.2.tgz#5f043eaa02f9750a9258b78c0a6e0dc1408fb2f7"
+extract-text-webpack-plugin@^4.0.0-alpha.0:
+  version "4.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/extract-text-webpack-plugin/-/extract-text-webpack-plugin-4.0.0-alpha.0.tgz#38d6cfa92aef05fdeaec2043a6de9fa5eb47bec8"
   dependencies:
     async "^2.4.1"
     loader-utils "^1.1.0"
-    schema-utils "^0.3.0"
-    webpack-sources "^1.0.1"
+    schema-utils "^0.4.5"
+    webpack-sources "^1.1.0"
 
 extract-zip@~1.5.0:
   version "1.5.0"
@@ -3333,15 +3333,16 @@ html-minifier@^3.2.3:
     relateurl "0.2.x"
     uglify-js "3.3.x"
 
-html-webpack-plugin@^2.28.0:
+html-webpack-plugin@webpack-contrib/html-webpack-plugin:
   version "2.30.1"
-  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-2.30.1.tgz#7f9c421b7ea91ec460f56527d78df484ee7537d5"
+  resolved "https://codeload.github.com/webpack-contrib/html-webpack-plugin/tar.gz/1dee37e2696fd3990fe9be0a2945e465c0bb9a64"
   dependencies:
     bluebird "^3.4.7"
     html-minifier "^3.2.3"
     loader-utils "^0.2.16"
     lodash "^4.17.3"
     pretty-error "^2.0.2"
+    tapable "^1.0.0"
     toposort "^1.0.0"
 
 htmlparser2@^3.8.2:
@@ -6197,10 +6198,6 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 
-sitemap-webpack-plugin@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/sitemap-webpack-plugin/-/sitemap-webpack-plugin-0.5.1.tgz#b60749402eee37d43866940e3a66200b86e55099"
-
 slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
@@ -7233,8 +7230,8 @@ webpack-sources@^1.0.1, webpack-sources@^1.1.0:
     source-map "~0.6.1"
 
 webpack@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.0.0.tgz#423c2d27cb050e7655c6ea25ce27bfcbfcb56731"
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.0.1.tgz#768d708beeca4c5f77f6c2d38a240fb6ff50ba5d"
   dependencies:
     acorn "^5.0.0"
     acorn-dynamic-import "^3.0.0"
