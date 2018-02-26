@@ -6,25 +6,24 @@ lint:
   image: node:latest
   stage: test
   cache:
-    key: "v2-$CI_COMMIT_REF_NAME"
     paths:
       - node_modules/
       - .yarn/
   script:
     - yarn config set cache-folder .yarn
     - yarn
-    - npm run lint
+    - yarn lint
 
 build:
   image: node:latest
   stage: build
   cache:
-    key: "v2-$CI_COMMIT_REF_NAME"
     paths:
       - node_modules/
+      - .yarn/
     policy: pull
   script:
-    - npm run build
+    - yarn build
   artifacts:
     expire_in: 3 days
     paths:

@@ -10,6 +10,15 @@
       </small>
     </h5>
 
+    <div class="notification is-danger">
+      Cartoon Network stopped using their old system to manage their video catalog and are now exclusively using the new video-data api, the same one as the mobile app.<br/>
+      This means that we can't juste "guess" the episodes IDs (which was just a number) since they now use hashes (long string of "random" chars that we can't just guess).<br/>
+      Until we can fully document all the new system, we can't be sure if there's a way to find "non-active" content.<br/>
+      CTOON's preview platform will be updated in March to support the app data but only for what we can actually see.<br/>
+      <br/>
+      If you know how to get the new data or have some hints, feel free to drop me a tweet/DM (@CTOONnet), send an email (kdy@airmail.cc) or use Discord (Kody#1337).
+    </div>
+
     <transition name="fadeUp">
       <div
         class="columns is-multiline is-centered"
