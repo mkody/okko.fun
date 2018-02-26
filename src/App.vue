@@ -113,7 +113,7 @@ export default {
       })
       .then(() => {
         // Get the schedule from CN Schedule
-        var scheduleUrl = 'https://api.sug.rocks/cnschedule.json'
+        var scheduleUrl = 'https://api.ctoon.network/schedule/all.json'
         fetch(scheduleUrl)
           .then(data => {
             return data.json()
@@ -136,7 +136,7 @@ export default {
           })
 
         // Get the previews
-        var prevUrl = 'https://be-lb.ctoon.network/shows/2'
+        var prevUrl = 'https://api.ctoon.network/previews/shows/2'
         fetch(prevUrl)
           .then(data => {
             return data.json()
