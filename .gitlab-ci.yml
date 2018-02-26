@@ -21,8 +21,9 @@ build:
     paths:
       - node_modules/
       - .yarn/
-    policy: pull
   script:
+    - yarn config set cache-folder .yarn
+    - yarn
     - yarn build
   artifacts:
     expire_in: 3 days
