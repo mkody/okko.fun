@@ -23,7 +23,6 @@
         </p>
 
         <a href="https://ko-fi.com/A637AV5" target="_blank"><img height="25" style="height:25px;" src="/static/img/ko-fi.png" alt="Buy Me a Coffee"></a>
-        <iframe src="//www.tipeee.com/ctoon/embed/button" width="100" height="24" style="border:0;"></iframe>
 
         <p>
           <small><i>Website design not final.</i></small>
