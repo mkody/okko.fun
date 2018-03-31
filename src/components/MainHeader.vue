@@ -22,11 +22,11 @@
           <router-link class="navbar-item" to="/schedule">
             Schedule
           </router-link>
-
+          <!--
           <router-link class="navbar-item" to="/previews">
             Previews
           </router-link>
-
+          -->
           <div class="navbar-item has-dropdown is-hoverable">
             <router-link class="navbar-link" to="/about">
               About

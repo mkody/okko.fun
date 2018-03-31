@@ -4,7 +4,7 @@
     <h5 class="subtitle">Dates are converted to your computer timezone</h5>
     <div class="content">
       Want to see more schedules?
-      <a target="_blank" href="https://cnschedulearchive.tumblr.com/">CN Schedule Archive</a> - <a target="_blank" href="https://cn.sug.rocks/">CN Online Schedule</a>
+      <a target="_blank" href="https://cnschedulearchive.tumblr.com/">CN Schedule Archive</a> - <a target="_blank" href="https://schedule.ctoon.network/">CN Online Schedule</a>
     </div>
 
     <transition-group name="fadeUp" tag="div" class="columns is-multiline is-mobile is-centered">
