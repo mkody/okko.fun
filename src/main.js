@@ -55,7 +55,8 @@ Vue.component('main-header', MainHeader)
 Vue.component('page-not-ready', PageNotReady)
 
 // Enable plugins
-if (!window.navigator.userAgent.indexOf('PhantomJS') > -1) {
+if (process.env.NODE_ENV.environment !== 'development' &&
+    !window.navigator.userAgent.indexOf('PhantomJS') > -1) {
   // Don't enable Raven on PhantomJS
   Raven
     .config('https://2bb55e55d64d47a39812ef0c33533c17@sentry.io/213579', {
@@ -68,6 +69,12 @@ if (!window.navigator.userAgent.indexOf('PhantomJS') > -1) {
     })
     .addPlugin(RavenVue, Vue)
     .install()
+  Vue.use(VueAnalytics, {
+    id: 'UA-103935709-3',
+    router
+  })
+} else {
+  console.log('%cRaven and Analytics disabled in dev', 'color:orange;')
 }
 Vue.use(Buefy, {
   defaultIconPack: 'fa',
@@ -78,10 +85,6 @@ Vue.use(VueImg, {
   thumbnails: true
 })
 Vue.use(VueFilter)
-Vue.use(VueAnalytics, {
-  id: 'UA-103935709-3',
-  router
-})
 
 // Say hi to whoever opens the console
 console.log(

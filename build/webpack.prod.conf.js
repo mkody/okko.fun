@@ -5,6 +5,7 @@ var webpack = require('webpack')
 var config = require('../config')
 var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
+var { VueLoaderPlugin } = require('vue-loader')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
@@ -55,10 +56,11 @@ var webpackConfig = merge(baseWebpackConfig, {
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'VERSION': JSON.stringify(gitRevisionPlugin.version()),
-      'COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
-      'BRANCH': JSON.stringify(gitRevisionPlugin.branch()),
+      'COMMITHASH': JSON.stringify(process.env.COMMIT_REF || gitRevisionPlugin.commithash()),
+      'BRANCH': JSON.stringify(process.env.HEAD || gitRevisionPlugin.branch()),
       'process.env': env
     }),
+    new VueLoaderPlugin(),
     // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css')
@@ -104,6 +106,7 @@ var webpackConfig = merge(baseWebpackConfig, {
       filename: 'service-worker.js',
       staticFileGlobs: ['dist/**/*.{js,html,css}'],
       minify: true,
+      navigateFallback: '/index.html',
       stripPrefix: 'dist/'
     }),
     // pre-render pages

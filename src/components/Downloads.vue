@@ -5,7 +5,11 @@
       Download or watch episodes and shorts.
     </h5>
 
-    <transition name="fadeLeft">
+    <transition name="fadeUp" :duration="500">
+      <h4 v-if="!$parent.downloads.ready" class="title has-text-centered">Loading...</h4>
+    </transition>
+
+    <transition name="fadeLeft" :duration="1500">
       <div class="notification is-danger" v-if="$parent.downloads.restricted">
         <strong>Sorry, but we can't show you this page.</strong><br>
         It looks like you're in a country where the show is freely available from legal sources.<br>
@@ -13,7 +17,7 @@
       </div>
     </transition>
 
-    <transition name="fadeLeft">
+    <transition name="fadeLeft" :duration="1500">
       <div class="notification is-danger" v-if="$parent.downloads.ext_blocked">
         <strong>An external ressource couldn't be loaded.</strong><br>
         Sorry, but we couldn't load an external ressource needed to verify your connexion to our downloads.<br>
@@ -22,7 +26,7 @@
       </div>
     </transition>
 
-    <transition name="fadeUp">
+    <transition name="fadeUp" :duration="1500">
       <b-tabs
         position="is-centered"
         class="block"

@@ -19,6 +19,8 @@
 </template>
 
 <script>
+let xmlConvert = require('xml-js')
+
 export default {
   name: 'app',
   metaInfo: {
@@ -35,11 +37,13 @@ export default {
         previous: []
       },
       schedule: {
+        ready: false,
         episodes: [],
         premieres: [],
         premiereTs: []
       },
       downloads: {
+        ready: false,
         ep: [],
         ep_legal: null,
         sh: [],
@@ -112,27 +116,24 @@ export default {
         t.timeline = json['timeline']
       })
       .then(() => {
-        // Get the schedule from CN Schedule
-        var scheduleUrl = 'https://api.ctoon.network/schedule/all.json'
+        // Get the schedule from the xml
+        let scheduleUrl = 'https://cors.kdy.ch/?url=http://www.adultswim.com/adultswimdynsched/xmlServices/ScheduleServices'
+        scheduleUrl += '%3FmethodName%3DgetAllShowings%26showId%3D440832%26name%3DOK%20K.O.!%26timezone%3DEST'
         fetch(scheduleUrl)
           .then(data => {
             return data.json()
           }, err => {
             console.log(err)
+            t.schedule.ready = true
           })
           .then(json => {
-            Object.keys(json).map(dayKey => {
-              var day = json[dayKey]
-
-              if (day['source'] === 'Cartoon Network') {
-                Object.keys(day['schedule']).map(scheduleKey => {
-                  var el = day['schedule'][scheduleKey]
-                  if (el['show'] === 'OK K.O.! Let\'s Be Heroes' && el['timestamp'] > t.currentTs) {
-                    t.schedule.episodes.push(el)
-                  }
-                })
-              }
+            let eps = (xmlConvert.xml2js(json.body, { compact: true })).allShowings.show
+            Object.keys(eps).map(dayKey => {
+              let day = eps[dayKey]._attributes
+              day.timestamp = Date.parse(day.date + ' 2018 ' + day.time) / 1000
+              t.schedule.episodes.push(day)
             })
+            t.schedule.ready = true
           })
 
         // Get the previews
@@ -161,8 +162,9 @@ export default {
             return data.json()
           })
           .catch(() => {
-            console.error('Something broke when getting downloads bro.')
+            console.error('Something broke when getting the country bro.')
             t.downloads.ext_blocked = true
+            t.downloads.ready = true
           })
           .then(json => {
             t.downloads.country = json['country_code']
@@ -173,9 +175,11 @@ export default {
                   return data.json()
                 }, err => {
                   console.error(err)
+                  t.downloads.ready = true
                 }).catch(() => {
                   console.error('Something broke when getting downloads bro.')
                   t.downloads.ext_blocked = true
+                  t.downloads.ready = true
                 })
                 .then(json => {
                   if (json['error']) {
@@ -186,6 +190,7 @@ export default {
                       console.error('Something broke when getting downloads bro.\n' + json['error']['message'])
                       t.downloads.ext_blocked = true
                     }
+                    t.downloads.ready = true
 
                     return
                   }
@@ -198,10 +203,13 @@ export default {
                   t.downloads.co_legal = json['comics']['legal_links']
                   t.downloads.mu = json['soundtrack']['list']
                   t.downloads.mu_legal = json['soundtrack']['legal_links']
+
+                  t.downloads.ready = true
                 })
             } else {
               localStorage.setItem('awesome', 'yes')
               t.restricted = true
+              t.downloads.ready = true
             }
           })
       })

@@ -2,36 +2,54 @@
   <div id="home">
     <div class="columns is-multiline is-tablet">
       <div class="column is-one-thirds-tablet">
-        <div class="box">
-          <strong>We're still building the website!</strong><br>
-          Some pages might not be complete, but we're getting there. ;)
-        </div>
+        <h5 class="subtitle">Schedule</h5>
 
-        <br>
+        <transition name="fade" :duration="500" mode="out-in">
+          <div key="lo" class="box" v-if="!$parent.schedule.ready">
+            Loading...
+          </div>
+          <div key="em" class="box" v-else-if="$parent.schedule.ready && $parent.schedule.episodes.length === 0">
+            No known dates for now.
+          </div>
+        </transition>
 
-        <transition name="fadeUp">
-          <div v-if="mnt && $parent.schedule.premieres.length > 0">
-            <h5 class="subtitle">New New New New on TV</h5>
+        <transition name="fadeUp" :duration="1500">
+          <div v-if="mnt && $parent.schedule.episodes.length > 0">
             <div class="columns is-multiline is-desktop is-centered">
               <div class="column is-12 card"
-                v-for="episode in $parent.schedule.premieres"
+                v-for="episode in $parent.schedule.episodes.slice(0, 5)"
                 :key="episode.timestamp">
                 <div class="content">
+                  <transition name="zoomLeft">
+                    <div class="newnewnewnew" v-if="$parent.schedule.premiereTs.indexOf(episode.timestamp) > -1">
+                      <span style="color: #ec1ad8">NEW</span><br>
+                      <span style="color: #0187ff">NEW</span><br>
+                      <span style="color: #ffecff">NEW</span><br>
+                      <span style="color: #001003">NEW</span>
+                    </div>
+                  </transition>
                   <strong>
-                    {{ episode.title }}
+                    {{ episode.episode }}
                   </strong>
                   <br>
-                  {{ $parent.getDate(episode.ts) }}
+                  {{ $parent.getDate(episode.timestamp) }}
                 </div>
+              </div>
+              <div class="column is-12 card"
+                v-if="$parent.schedule.episodes.length > 5">
+                <router-link tag="div" class="content clickable" to="/schedule">
+                  Click here for more...
+                </router-link>
               </div>
             </div>
           </div>
         </transition>
       </div>
       <div class="column is-two-thirds-tablet">
+        <h5 class="subtitle">From the official Tumblr</h5>
+
         <transition name="fadeUp">
           <div v-if="mnt && $parent.tumblr.latest">
-            <h5 class="subtitle">From the official Tumblr</h5>
             <div class="card">
               <div class="card-image">
                 <span v-if="$parent.tumblr.latest.embed">
@@ -218,5 +236,61 @@ export default {
 .box {
   margin-bottom: 0 !important;
   margin-top: 0.5rem !important;
+}
+
+.newnewnewnew {
+  /* background: linear-gradient(0deg, #ffc100, #e3e81d); */
+  background: linear-gradient(180deg, #1ddde8, #1de840);
+  float: right;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 17px;
+  margin: -12px -12px -12px 10px;
+  overflow: hidden;
+  padding: 2px 5px 0;
+
+  span {
+    animation-duration: 3s;
+    animation-name: newnewnewnew;
+    animation-iteration-count: infinite;
+    position: relative;
+    top: 0px;
+  }
+}
+
+@keyframes newnewnewnew {
+    0% {
+       top: 70px;
+    }
+    10% {
+       top: 70px;
+    }
+    12% {
+       top: 51px;
+    }
+    20% {
+       top: 51px;
+    }
+    22% {
+       top: 34px;
+    }
+    30% {
+       top: 34px;
+    }
+    32% {
+       top: 17px;
+    }
+    40% {
+       top: 17px;
+    }
+    42% {
+       top: 0px;
+    }
+    90% {
+       opacity: 1;
+    }
+    100% {
+       opacity: 0;
+    }
 }
 </style>
