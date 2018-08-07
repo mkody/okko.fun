@@ -2,7 +2,7 @@
   <div id="home">
     <div class="columns is-multiline is-tablet">
       <div class="column is-one-thirds-tablet">
-        <h5 class="subtitle">Schedule</h5>
+        <h5 class="subtitle">Schedule <small>(EST)</small></h5>
 
         <transition name="fade" :duration="500" mode="out-in">
           <div key="lo" class="box" v-if="!$parent.schedule.ready">

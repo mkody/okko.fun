@@ -1,7 +1,7 @@
 <template>
   <div id="schedule">
     <h3 class="title">Next TV Airings</h3>
-    <h5 class="subtitle">Dates are converted to your computer timezone</h5>
+    <h5 class="subtitle">This is the EST schedule.</h5>
     <div class="content">
       Want to see more schedules?
       <a target="_blank" href="https://cnschedulearchive.tumblr.com/">CN Schedule Archive</a> - <a target="_blank" href="https://schedule.ctoon.network/">CN Online Schedule</a>
